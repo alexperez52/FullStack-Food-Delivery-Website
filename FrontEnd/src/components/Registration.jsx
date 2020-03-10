@@ -31,7 +31,7 @@ export default class Registration extends Component {
         event.preventDefault();
         const data = {
 
-            userName: this.state.userName,
+            username: this.state.userName,
             password: this.state.password,
             email: this.state.email
 

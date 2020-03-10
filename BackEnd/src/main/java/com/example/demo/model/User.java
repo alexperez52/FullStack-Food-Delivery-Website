@@ -3,6 +3,7 @@ package com.example.demo.model;
 import org.springframework.context.annotation.Role;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table (name="users")
@@ -13,13 +14,14 @@ public class User {
     @Column(name="id")
     private Long id;
     @Column(name="username")
-    private String userName;
+    private String username;
     @Column(name="password")
     private String password;
-    @Column(name="email")
-    private String email;
-
-
+//    @Column(name="email")
+//    private String email;
+//    @Column(name="role")
+//    private List<UserRoles> roles;
+//
 
 
 
@@ -30,12 +32,12 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -46,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 }

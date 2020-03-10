@@ -17,7 +17,7 @@ const LoginSuccess = () => {
                 <h2 >
                     LOGIN SUCCESS!
             </h2>
-                <h3>Here are the current Usernames and Passwords
+                <h3>Welcome 
             </h3>
        
             <UserList />

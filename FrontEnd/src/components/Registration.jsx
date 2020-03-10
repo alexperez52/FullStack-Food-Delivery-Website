@@ -7,7 +7,7 @@ export default class Registration extends Component {
         super(props);
 
         this.state = {
-            userName: "",
+            username: "",
             password: "",
             email: "",
 
@@ -31,7 +31,7 @@ export default class Registration extends Component {
         event.preventDefault();
         const data = {
 
-            username: this.state.userName,
+            username: this.state.username,
             password: this.state.password,
             email: this.state.email
 
@@ -61,10 +61,10 @@ export default class Registration extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input
-                        type="userName"
-                        name="userName"
+                        type="username"
+                        name="username"
                         placeholder="Username"
-                        value={this.state.userName}
+                        value={this.state.username}
                         onChange={this.handleChange}
                         required />
                 </div>

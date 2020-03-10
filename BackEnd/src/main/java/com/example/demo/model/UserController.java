@@ -12,6 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class UserController {
     @Autowired
@@ -43,7 +47,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody User user) {
 
-        if(!repository.existsUserByUsername(user.getUsername())) {
+        if(!repository.existsUserByEmailOrUsername(user.getUsername(), user.getEmail())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             repository.save(user);
             return new ResponseEntity<>("User is created successfully", HttpStatus.CREATED);
@@ -52,6 +56,11 @@ public class UserController {
             return new ResponseEntity<>("user exists", HttpStatus.FOUND);
 
         }
+    }
+    @PostMapping(value = "/logout5")
+    public void logout(HttpServletRequest request) throws ServletException {
+        SecurityContextHolder.clearContext();
+        request.logout();
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -62,7 +71,7 @@ public class UserController {
         MyUserPrincipal myUserPrincipal = (MyUserPrincipal) authentication.getPrincipal();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+    //clear context to log out
         return new ResponseEntity<Object>(user, HttpStatus.OK);
     }
 

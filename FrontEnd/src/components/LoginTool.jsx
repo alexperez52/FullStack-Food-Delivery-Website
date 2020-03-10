@@ -7,7 +7,7 @@ export default class LoginTool extends Component {
     super(props);
 
     this.state = {
-      userName: "",
+      username: "",
       password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +23,7 @@ export default class LoginTool extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const data = {
-      userName: this.state.userName,
+      username: this.state.username,
       password: this.state.password
     };
 
@@ -32,10 +32,10 @@ export default class LoginTool extends Component {
 
       .then(response => {
 
-        if(response.data === "Login Success"){
+        if(response.statusText === "OK"){
           
-          const updateName = JSON.stringify(data.userName);
-          console.log(JSON.stringify(data.userName));
+          const updateName = JSON.stringify(data.username);
+          console.log(JSON.stringify(data.username));
           history.push("/LoginSuccess");
         }
         else{
@@ -52,10 +52,10 @@ export default class LoginTool extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <input
-              type="userName"
-              name="userName"
+              type="username"
+              name="username"
               placeholder="Username"
-              value={this.state.userName}
+              value={this.state.username}
               onChange={this.handleChange}
               required
             />

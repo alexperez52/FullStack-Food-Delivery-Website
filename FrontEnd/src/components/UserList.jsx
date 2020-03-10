@@ -12,9 +12,9 @@ export default class UserList extends Component {
   }
 
   componentDidMount() {
-    axios.get("/users")
+    axios.get("/test")
       .then(res => {
-        const posts = res.data.map(obj => ({title: obj.userName, overview: obj.password}));
+        const posts = res.data;
         this.setState({ posts });
       });
   }
@@ -22,17 +22,9 @@ export default class UserList extends Component {
 
   render() {
     return (
-      <ul>
-        {this.state.posts.map(function(post, index){
-          return (
-              <div key={index}>
-                <h1> User name: {" "} {post.title}</h1>
-          <p>Password: {" "}{post.overview}</p>
-              </div>
-            )
-          }
-        )}
-      </ul>
+       <div>
+               {this.state.posts.username}
+            </div>
     );
 
   }

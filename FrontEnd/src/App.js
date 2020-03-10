@@ -14,9 +14,10 @@ import LoginFail from './components/LoginFail';
 class App extends Component {
   render() {
     return (
-      <div className="App__Form">
 
-        <div>
+      <div className="App__Form">
+        
+        
         <Navigation />
           <Router history={history}>
           
@@ -31,7 +32,7 @@ class App extends Component {
           </Router>
         </div>
 
-      </div>
+      
     );
   }
 }

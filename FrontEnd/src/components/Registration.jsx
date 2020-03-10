@@ -57,43 +57,124 @@ export default class Registration extends Component {
 
 
     render() {
-        return <div>
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <input
+        return(
+            <div className="acontainer">
+      <div className="App_Card">
+        <form onSubmit={this.handleSubmit} >
+          <div >
+            <div className="name-form" size="16">
+              <div className="name-container">
+                <div className="first-name-container">
+                  <div className="first-name-label" size ="4">
+                    <label className="first-name-block" display="block">
+                      First Name
+                    </label>
+                  </div>
+                  <div className="first-name-input">
+                    <div className="input-container">
+                      <div className="input-actual">
+                        <input
+                         id="FieldWrapper-0"
+                         className="input-textfield"
+
                         type="username"
                         name="username"
-                        placeholder="Username"
                         value={this.state.username}
                         onChange={this.handleChange}
-                        required />
+                        required
+                        ></input>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <br></br>
-                <div>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        required />
+              </div>
+              <div className="name-container">
+                <div className="first-name-container">
+                  <div className="first-name-label" size ="4">
+                    <label className="first-name-block" display="block">
+                      Last Name
+                    </label>
+                  </div>
+                  <div className="last-name-input">
+                    <div className="input-container" size ="16">
+                      <div className="input-actual">
+                        <input
+                        id="FieldWrapper-0"
+                          className="input-textfield"
+                        //   type="password"
+                          name="password"
+                        //   value={this.state.password}
+                            //   onChange={this.handleChange}
+                          required
+                        ></input>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <br></br>
-                <div>
-                    <input
+              </div>
+            </div>
+          </div>
+          <div className="name-form1" size="16">
+              <div className="name-container">
+                <div className="first-name-container">
+                  <div className="first-name-label" size ="4">
+                    <label className="first-name-block" display="block">
+                      Email
+                    </label>
+                  </div>
+                  <div className="first-name-input1">
+                    <div className="input-container1">
+                      <div className="input-actual1">
+                        <input
+                         id="FieldWrapper-0"
+                         className="input-textfield1"
+
                         type="email"
                         name="email"
-                        placeholder="Email"
                         value={this.state.email}
                         onChange={this.handleChange}
-                        required />
+                        required
+                        ></input>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <br></br>
-                <button type="submit">Register</button>
-            </form>
-            <br></br>
-            <button onClick={this.clicked}>The Button</button>
-        </div>
-    }
+              </div>
+              </div>
+              <div className="name-form1" size="16">
+              <div className="name-container">
+                <div className="first-name-container">
+                  <div className="first-name-label" size ="4">
+                    <label className="first-name-block" display="block">
+                      Password
+                    </label>
+                  </div>
+                  <div className="first-name-input1">
+                    <div className="input-container1">
+                      <div className="input-actual1">
+                        <input
+                         id="FieldWrapper-0"
+                         className="input-textfield1"
+
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        required
+                        ></input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+          <button type="submit">Register</button>
+          <button onClick={this.clicked}>The Button</button>
+
+        </form>
+      </div>
+      </div>
+        
+        )};
 
 }

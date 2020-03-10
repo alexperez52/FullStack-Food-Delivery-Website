@@ -48,7 +48,7 @@ export default class LoginTool extends Component {
 
   render() {
     return (
-      <div>
+      <div className="acontainer">
         <form onSubmit={this.handleSubmit}>
           <div>
             <input

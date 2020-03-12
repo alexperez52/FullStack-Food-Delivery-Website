@@ -45,14 +45,12 @@ export default class LoginTool extends Component {
     return (
       <div className="acontainer">
         <div className="App_Card">
-         
           <form onSubmit={this.handleSubmit}>
             <div className="container-div">
-              
               <div className="content-container-div">
-              <div className="login-text">
-                <label>Sign In</label>
-              </div>
+                <div className="login-text">
+                  <label>Sign In</label>
+                </div>
                 <div className="label-div">Username</div>
                 <div className="input-div">
                   <input className="input-input"></input>
@@ -70,21 +68,22 @@ export default class LoginTool extends Component {
                   <input className="input-input"></input>
                 </div>
               </div>
-            <div className="checkbox-div">
-              Keep me logged in
-            <input type="checkbox">
-            </input>
-            </div>
+              <div className="checkbox-div">
+                Keep me logged in
+                <input type="checkbox"></input>
+              </div>
             </div>
             <button className="login-button" type="submit">
               Login
             </button>
             <div className="content-container-div">
               Don't have an account?{" "}
-            <a href="registration" className="register-label">Register</a>
+              <a href="registration" className="register-label">
+                Register
+              </a>
             </div>
             <div>
-            <div class="separator">Or login with</div>
+              <div class="separator">Or login with</div>
             </div>
             <button className="facebook-button" type="submit">
               Login with Facebook

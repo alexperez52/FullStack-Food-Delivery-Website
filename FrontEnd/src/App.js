@@ -15,10 +15,10 @@ class App extends Component {
   render() {
     return (
 
-      <div className="App__Form">
-        
+      <div className="home-header">
         
         <Navigation />
+        
           <Router history={history}>
           
             <Switch>

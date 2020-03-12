@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.Right__Align {
+
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+
+
+}
 .Left__Align {
 
   text-align: left;
@@ -9,6 +17,11 @@
   padding-right: 10px;
 
 
+}
+
+.search-div {
+
+  
 }
 
 .Add__Padding {
@@ -409,6 +422,10 @@ text-align: center;
   
 }
 
+.home-header {
+  background-color: beige;
+  padding-bottom: 17%;
+}
 
 .App_Card {
   
@@ -484,18 +501,10 @@ padding-bottom: 10px;
 }
 
 img {
-  height: 100px;
-  width: 150px;
-  border-radius: 15px;
-  border-color: orange;
-  border-width: 5px;
-  border-style: inset;
-  float: left;
-  align-items: center;
-  margin: auto auto;
-  box-shadow: 0 0 10px black;
-  margin-left: 20px;
-  margin-bottom: 20px;
+width: 30%;
+height: 30vmin;
+background-color: transparent;
+align-self: right;
 }
 
 .App-logo {
@@ -580,12 +589,6 @@ code {
   
 }
 
-.App__Aside {
-  width: 50%;
-  background-color: #66DAC7;
-  
-}
-
 .App__Form {
   height: 100%;
   width: 100%;
@@ -597,14 +600,16 @@ code {
 
 .PageSwitcher {
   display: flex;
-  justify-content: flex-end;
-  
+  justify-content: space-between;
+  padding-top: 1%;
   margin-bottom: 2%;
+  margin-left: 10% ;
+  margin-right: 3%;
 }
 
 .PageSwitcher__Item {
-  background-color: #4C5D72;
-  color: #9DA6B1;
+  background-color: rgb(196, 84, 80);
+  color: white;
   padding: 10px 25px;
   cursor: pointer;
   font-size: .9em;

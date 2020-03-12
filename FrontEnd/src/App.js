@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Registration from './components/Registration';
+import Registration from './components/auth/Registration';
 import { Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
-import Error from "./components/Error";
-import Login from "./components/LoginTool";
+import Error from "./components/auth/Error";
+import Login from "./components/auth/LoginTool";
 import Navigation from "./components/Navigation";
 import './App.css';
 import history from "./components/history"
-import LoginSuccess from './components/LoginSuccess';
-import LoginFail from './components/LoginFail';
+import LoginSuccess from './components/auth/LoginSuccess';
+import LoginFail from './components/auth/LoginFail';
 
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
             </Switch>
           </Router>
         </div>
-
+    
       
     );
   }

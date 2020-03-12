@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import history from './history'; 
+import history from '../history'; 
 
 export default class Registration extends Component {
     constructor(props) {
@@ -50,19 +50,15 @@ export default class Registration extends Component {
     clicked() {
 
         axios.get("/users").then(response => console.log(response.data));
-       
-
     };
-
-
 
     render() {
         return(
-            <div className="acontainer">
+          
       <div className="App_Card">
         <form onSubmit={this.handleSubmit} >
           <div >
-            <div className="name-form" size="16">
+            <div className="name-form" >
               <div className="name-container">
                 <div className="first-name-container">
                   <div className="first-name-label" size ="4">
@@ -76,7 +72,6 @@ export default class Registration extends Component {
                         <input
                          id="FieldWrapper-0"
                          className="input-textfield"
-
                         type="username"
                         name="username"
                         value={this.state.username}
@@ -101,10 +96,7 @@ export default class Registration extends Component {
                         <input
                         id="FieldWrapper-0"
                           className="input-textfield"
-                        //   type="password"
                           name="password"
-                        //   value={this.state.password}
-                            //   onChange={this.handleChange}
                           required
                         ></input>
                       </div>
@@ -155,7 +147,6 @@ export default class Registration extends Component {
                         <input
                          id="FieldWrapper-0"
                          className="input-textfield1"
-
                         type="password"
                         name="password"
                         value={this.state.password}
@@ -173,7 +164,7 @@ export default class Registration extends Component {
 
         </form>
       </div>
-      </div>
+   
         
         )};
 

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import UserList from "./UserList";
+import UserList from "../UserList";
 
 
 const LoginSuccess = () => {

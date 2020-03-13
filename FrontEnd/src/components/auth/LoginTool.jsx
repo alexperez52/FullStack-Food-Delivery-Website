@@ -53,13 +53,21 @@ export default class LoginTool extends Component {
                 </div>
                 <div className="label-div">Username</div>
                 <div className="input-div">
-                  <input className="input-input"></input>
+                  <input className="input-input"
+                  type="username"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}></input>
                 </div>
               </div>
               <div className="content-container-div">
                 <div className="label-div">Password</div>
                 <div className="input-div">
-                  <input className="input-input"></input>
+                  <input className="input-input"
+                   type="password"
+                   name="password"
+                   value={this.state.password}
+                   onChange={this.handleChange}></input>
                 </div>
               </div>
               <div className="content-container-div">

@@ -15,10 +15,7 @@ class App extends Component {
   render() {
     return (
 
-      <div className="home-header">
-        
-        <Navigation />
-        
+ 
           <Router history={history}>
           
             <Switch>
@@ -30,7 +27,7 @@ class App extends Component {
               <Route component={Error} />
             </Switch>
           </Router>
-        </div>
+     
     
       
     );

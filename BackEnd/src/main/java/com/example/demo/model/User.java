@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import org.springframework.context.annotation.Role;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +9,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name="user_id")
     private Long id;
     @Column(name="username")
     private String username;
@@ -19,10 +17,10 @@ public class User {
     private String password;
     @Column(name="email")
     private String email;
-//    @Column(name="role")
-//    private List<UserRoles> roles;
-//
 
+    @ManyToOne
+    @JoinColumn
+    private Roles role;
 
 
     public Long getId() {

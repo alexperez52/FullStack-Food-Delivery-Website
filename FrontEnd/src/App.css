@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.selection-image{
+  height: 100px;
+  width: 100px;
+
+}
+
 .Right__Align {
 
   text-align: right;
@@ -46,7 +52,21 @@
   
 
 }
+.button-style{
+  background-color: #ffffff;
+}
 
+.horizontal-align{
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.inline {
+  
+  display: inline;
+}
 
 
 .text-wrapper{
@@ -338,6 +358,49 @@ text-align: center;
 
 
 }
+.name-input{
+  margin-top: 7px;
+  margin-bottom: 7px;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(25, 25, 25);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-style: none;
+  border-bottom-width: 0px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(25, 25, 25);
+  border-left-style: none;
+  border-left-width: 0px;
+  border-right-color: rgb(25, 25, 25);
+  border-right-style: none;
+  border-right-width: 0px;
+  border-top-color: rgb(25, 25, 25);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-top-style: none;
+  border-top-width: 0px;
+  box-shadow: rgb(214, 214, 214) 0px 0px 0px 1px inset;
+  box-sizing: border-box;
+  color: rgb(25, 25, 25);
+  font-size: 16px;
+  font-variant-ligatures: no-common-ligatures;
+  font-weight: 500;
+  line-height: 24px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  width: 170px;
+  z-index: 1;
+
+}
 
 .input-input {
   margin-top: 7px;
@@ -384,6 +447,7 @@ text-align: center;
 }
 
 .login-button {
+  margin-top: 5%;
   padding: 10px 148px;
   background-color:#F08080;
   border: 2px solid #F08080;
@@ -443,12 +507,18 @@ text-align: center;
   margin-bottom: 10px;
 }
 
+.label-div-name{
+  display:flex;
+  margin-left: 0px;
+}
+
 .label-div {  
   display: flex;
   margin-left: 24px;
   font-family: DD-TTNorms, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   
 }
+
 
 .login-text{
   
@@ -460,14 +530,21 @@ text-align: center;
   
 }
 
+.selection-label{
+  font-weight: bold;
+  color: rgb(233, 158, 158);
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 100%;
+  
+}
 .home-header {
-  background-color: #eff0eb;
+  background-color: #bebebe;
   padding-bottom: 20%;
   
 }
 
 .App_Card {
-
 background-color: lightyellow;
 border-bottom-left-radius: 20px;
 border-bottom-right-radius: 20px;
@@ -486,14 +563,24 @@ text-align: center;
 width: 27%;
 margin-left: auto;
 margin-right: auto;
-padding-bottom: 10%;
+padding-bottom: 5%;
+}
+
+
+
+.sticky{
+  
+  position: sticky;
+  top: 0;
+    width: 100%;
+    
+  
 }
 
 .acontainer {
- 
-  
-  box-sizing: border-box;
-  color: rgb(33, 37, 41);
+padding-top: 10px;
+  background-color: #eff0eb;
+  color: rgb(248, 244, 187);
   font-family: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif";
   font-size: 16px;
   font-variant-ligatures: no-common-ligatures;
@@ -501,7 +588,7 @@ padding-bottom: 10%;
   line-height: 24px;
   overflow-wrap: break-word;
   text-align: center;
-  height: 600px;
+  height: 1000px;
 
 }
 .name-form1 {

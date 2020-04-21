@@ -11,11 +11,12 @@
     "react-alert": "^6.0.1",
     "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.13.0",
+    "react-headroom": "^3.0.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "react-sticky-header": "^0.2.0"
   },
   "proxy": "http://localhost:8080",
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

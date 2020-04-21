@@ -9,14 +9,23 @@ import './App.css';
 import history from "./components/history"
 import LoginSuccess from './components/auth/LoginSuccess';
 import LoginFail from './components/auth/LoginFail';
-
+import Header from './components/Header';
+import Headroom from 'react-headroom';
 
 class App extends Component {
+  
+
   render() {
+    
     return (
 
- 
-          <Router history={history}>
+          <div>
+            <Router history={history}>
+          <Headroom>
+            <Header />
+          </Headroom>
+       
+            
           
             <Switch>
               <Route path="/" component={Home} exact />
@@ -27,10 +36,10 @@ class App extends Component {
               <Route component={Error} />
             </Switch>
           </Router>
-     
-    
+          </div>
       
     );
   }
 }
 export default App;
+

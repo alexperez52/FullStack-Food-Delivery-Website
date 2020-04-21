@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import history from "../history";
+import {Link} from "react-router-dom";
+
 export default class LoginTool extends Component {
   constructor(props) {
     super(props);
@@ -26,19 +28,20 @@ export default class LoginTool extends Component {
       password: this.state.password
     };
 
-    axios
-      .post("/login ", data)
+    axios.post("/login ", data)
 
       .then(response => {
-        if (response.statusText === "OK") {
+        if (response.statusText === "OK" && response.data.username != "") {
           const updateName = JSON.stringify(data.username);
           console.log(JSON.stringify(data.username));
           history.push("/LoginSuccess");
-        } else {
+        } 
+        else{
           history.push("/LoginFail");
         }
         console.log(response);
-      });
+      })
+      .catch(error => history.push("/LoginFail"));
   }
 
   render() {
@@ -70,12 +73,6 @@ export default class LoginTool extends Component {
                    onChange={this.handleChange}></input>
                 </div>
               </div>
-              <div className="content-container-div">
-                <div className="label-div"> Confirm Password</div>
-                <div className="input-div">
-                  <input className="input-input"></input>
-                </div>
-              </div>
               <div className="checkbox-div">
                 Keep me logged in
                 <input type="checkbox"></input>
@@ -86,9 +83,9 @@ export default class LoginTool extends Component {
             </button>
             <div className="content-container-div">
               Don't have an account?{" "}
-              <a href="registration" className="register-label">
+              <Link to="registration" className="register-label">
                 Register
-              </a>
+              </Link>
             </div>
             <div>
               <div class="separator">Or login with</div>
@@ -106,26 +103,3 @@ export default class LoginTool extends Component {
   }
 }
 
-{
-  /* <div>
-<input
-
-  type="username"
-  name="username"
-  placeholder="Username"
-  value={this.state.username}
-  onChange={this.handleChange}
-  required
-/>
-<input
-
-  type="password"
-  name="password"
-  placeholder="Password"
-  value={this.state.password}
-  onChange={this.handleChange}
-  required
-/>
-</div>
-<button type="submit">Login</button> */
-}

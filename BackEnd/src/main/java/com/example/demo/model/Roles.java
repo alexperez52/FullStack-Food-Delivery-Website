@@ -9,16 +9,33 @@ public class Roles {
 
     @Id
     @GeneratedValue
-    @Column(name ="user_id")
+    @Column(name ="role_id")
     private Long id;
 
 
     @Column(name="user_role")
     private String role;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> userList;
+    public Long getId() {
+        return id;
+    }
 
 
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+//    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<User> userList;
+//
+//
 
 }

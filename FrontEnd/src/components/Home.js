@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import Kitchen from "./kitchen.jpg";
+import Kitchen from "./images/headerpic.jpg";
 
 const Home = () => {
     return (
@@ -9,7 +9,7 @@ const Home = () => {
 
 
 
-                <Header />
+                
                 <div className="content-wrapper">
 
                     <img src={Kitchen}></img>

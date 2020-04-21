@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import history from "./history";
-import Pizza from "../pizza.png"
+import {Link} from "react-router-dom";
+
 function onclick() {
     console.log("test")
 
@@ -17,8 +18,8 @@ const Navigation = () => {
         <div>
             <div className="PageSwitcher">
                 <div>            
-                    <a href="login" className="PageSwitcher__Item">Sign In</a>
-                    <a href="registration " className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</a>
+                    <Link to="login" className="PageSwitcher__Item">Sign In</Link>
+                    <Link to="registration" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</Link>
                     <a onClick={onclick} className="PageSwitcher__Item PageSwitcher__Item   ">Logout</a>
                 </div>
             </div>

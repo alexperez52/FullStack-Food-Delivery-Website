@@ -88,7 +88,7 @@ export default class LoginTool extends Component {
               </Link>
             </div>
             <div>
-              <div class="separator">Or login with</div>
+              <div className="separator">Or login with</div>
             </div>
             <button className="facebook-button" type="submit">
               Login with Facebook

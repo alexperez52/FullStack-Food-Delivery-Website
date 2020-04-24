@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.multi.MultiButtonUI;
+import java.util.Stack;
 
 @RestController
 public class UserController {
@@ -28,6 +30,8 @@ public class UserController {
 
     @Autowired
     RoleRepository roleRepository;
+
+
 
 //    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
 //    public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
@@ -46,6 +50,18 @@ public class UserController {
 
         return principal;
     }
+
+//    @RequestMapping(value = "/owner/restaurants", method = RequestMethod.POST)
+//    public ResponseEntity<Object> createRestaurant(@RequestBody Restaurant restaurant) {
+//
+//        if(repository.findByUsername(currentUser).isPresent()){
+//            repository.findByUsername(currentUser).get().setRestaurant(restaurant);
+//
+//        }
+//        restaurantRepository.save(restaurant);
+//
+//        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
+//    }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody User user) {

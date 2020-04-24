@@ -13,22 +13,29 @@ public class User {
     @GeneratedValue
     @Column(name="user_id")
     private Long id;
-    @Column(name="first_name")
     private String firstName;
-    @Column(name ="last_name")
     private String lastName;
 
-    @Column(name="username")
     private String username;
-    @Column(name="password")
     private String password;
-    @Column(name="email")
+
     private String email;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "role_id", referencedColumnName = "role_id")
     private Roles role;
 
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id" , referencedColumnName = "restaurant_id")
+    private Restaurant restaurant;
 
     public String getFirstName() {
         return firstName;
@@ -63,6 +70,7 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getUsername() {
         return username;
     }

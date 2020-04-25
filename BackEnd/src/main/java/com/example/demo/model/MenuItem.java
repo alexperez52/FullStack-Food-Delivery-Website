@@ -13,8 +13,8 @@ public class MenuItem extends Item {
 
     }
 
-    public MenuItem(String name,  Double price, String description){
-        super(name, price, description);
+    public MenuItem(String name,  Double price, String description,String imageURL){
+        super(name, price, description, imageURL);
     }
 
 }

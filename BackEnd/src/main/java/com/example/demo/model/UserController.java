@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,9 +47,10 @@ public class UserController {
 //        return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
 //    }
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public MyUserPrincipal testing(@CurrentUser MyUserPrincipal principal){
+    public User testing(@CurrentUser MyUserPrincipal principal){
+        User user = repository.getUserByUsername(principal.getUsername());
 
-        return principal;
+        return user;
     }
 
 //    @RequestMapping(value = "/owner/restaurants", method = RequestMethod.POST)
@@ -99,14 +101,20 @@ public class UserController {
         MyUserPrincipal myUserPrincipal = (MyUserPrincipal) authentication.getPrincipal();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        user = repository.getUserByUsername(user.getUsername());
     //clear context to log out
         return new ResponseEntity<Object>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<Object> getUsers() {
-        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
+
+        String a = "OWNER";
+
+        return new ResponseEntity<>(repository.findByRole(roleRepository.getRolesByRole(a)), HttpStatus.OK);
     }
+
 
 
 }

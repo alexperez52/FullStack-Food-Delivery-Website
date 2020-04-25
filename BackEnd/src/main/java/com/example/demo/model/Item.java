@@ -24,7 +24,7 @@ public class Item {
     @JoinColumn(name = "restaurant_id", referencedColumnName = "restaurant_id")
     private Restaurant restaurant;
 
-    public Item(String name, Double price, String description) {
+    public Item(String name, Double price, String description, String imgURL) {
     }
 
     public Item(){

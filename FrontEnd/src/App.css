@@ -2,6 +2,35 @@
   text-align: center;
 }
 
+.dialogStyles{
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: #eee;
+  padding: 10px 20px 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogCloseButtonStyles{
+  margin-bottom: 15px;
+  padding: 3px 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  border:none;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  align-self: flex-end;
+  
+}
+
 .selection-image{
   height: 100px;
   width: 100px;
@@ -41,6 +70,13 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.item-gap{
+  display:flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+}
+
 .space-gap{
   display:flex;
   background-color: #e2ceb3;
@@ -564,6 +600,7 @@ width: 27%;
 margin-left: auto;
 margin-right: auto;
 padding-bottom: 5%;
+margin-bottom: 1%;
 }
 
 
@@ -590,6 +627,12 @@ padding-top: 10px;
   text-align: center;
   height: 1000px;
 
+}
+
+.small-pic{
+  height:100px;
+  width:100px;
+  
 }
 .name-form1 {
   justify-content: left;

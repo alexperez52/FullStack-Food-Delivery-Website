@@ -28,13 +28,21 @@ export default class LoginTool extends Component {
       password: this.state.password
     };
 
+    
     axios.post("/login ", data)
 
       .then(response => {
         if (response.statusText === "OK" && response.data.username != "") {
           const updateName = JSON.stringify(data.username);
           console.log(JSON.stringify(data.username));
-          history.push("/LoginSuccess");
+          
+          if(response.data.role.role === "OWNER"){
+            history.push("/owner");
+          }
+          
+          else{
+            history.push("/LoginSuccess");
+          }          
         } 
         else{
           history.push("/LoginFail");
@@ -45,7 +53,10 @@ export default class LoginTool extends Component {
   }
 
   render() {
+
     return (
+
+
       <div className="acontainer">
         <div className="App_Card">
           <form onSubmit={this.handleSubmit}>

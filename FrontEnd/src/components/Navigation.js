@@ -18,14 +18,13 @@ const Navigation = () => {
         <div>
             <div className="PageSwitcher">
                 <div>            
-                    <Link to="login" className="PageSwitcher__Item">Sign In</Link>
-                    <Link to="registration" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</Link>
+                    <Link  to="/login" className="PageSwitcher__Item">Sign In</Link>
+                    <Link to="/registration" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</Link>
                     <a onClick={onclick} className="PageSwitcher__Item PageSwitcher__Item   ">Logout</a>
                 </div>
             </div>
 
         </div>
-
 
 
     )

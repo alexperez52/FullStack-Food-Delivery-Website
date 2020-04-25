@@ -2,8 +2,9 @@ package com.example.demo.model;
 
 
 import javax.persistence.*;
-@Entity
-@Table(name = "items")
+//@Entity
+//@Table(name = "items")
+@MappedSuperclass
 public class Item {
 
     @Id
@@ -23,6 +24,13 @@ public class Item {
     @JoinColumn(name = "restaurant_id", referencedColumnName = "restaurant_id")
     private Restaurant restaurant;
 
+    public Item(String name, Double price, String description) {
+    }
+
+    public Item(){
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -32,6 +40,7 @@ public class Item {
     }
 
     public String getName() {
+
         return name;
     }
 

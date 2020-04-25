@@ -35,7 +35,7 @@ public class RestaurantController {
     }
 
     @RequestMapping(value = "/owner/restaurants/add", method = RequestMethod.POST)
-    public ResponseEntity<Object> addItem(@RequestBody Item item, @CurrentUser MyUserPrincipal principal){
+    public ResponseEntity<Object> addItem(@RequestBody MenuItem item, @CurrentUser MyUserPrincipal principal){
 
         if(userRepository.findById(principal.getId()).isPresent()){
 

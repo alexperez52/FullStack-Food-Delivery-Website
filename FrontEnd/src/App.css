@@ -53,7 +53,7 @@
 
 }
 .right-align {
-  background-color: #e2ceb3;
+  background-color: white;
   display: flex;
   justify-content: left;
   column-gap: 4%;
@@ -62,7 +62,7 @@
   margin-bottom: auto;
 }
 .left-align {
-  background-color: #e2ceb3;
+  background-color:white;
   display: flex;
   justify-content: left;
   column-gap: 4%;
@@ -71,15 +71,10 @@
   margin-bottom: auto;
 }
 
-.item-gap{
-  display:flex;
-  flex-wrap: wrap;
-  align-self: flex-start;
-}
 
 .space-gap{
   display:flex;
-  background-color: #e2ceb3;
+  background-color: white;
   justify-content: space-between;
   padding-right: 3%;
   padding-top: 0.1%;
@@ -555,7 +550,6 @@ text-align: center;
   
 }
 
-
 .login-text{
   
   font-weight: bold;
@@ -576,9 +570,83 @@ text-align: center;
 }
 .home-header {
   background-color: #bebebe;
-  padding-bottom: 20%;
+  padding-bottom: 7%;
   
 }
+
+.description-label{
+  font-size: 13px;
+  font-weight: bold;
+  color: grey;
+  justify-content:left;
+  text-align: left;
+  padding-left: 7px;
+
+}
+.restaurant-label{
+  font-size: 20px;
+  font-weight: bold;
+  justify-content:left;
+  text-align: left; 
+  padding-left: 7px;
+}
+.small-pic{
+  height:195px;
+  width:340px;
+  border-radius: 3%;
+  
+}
+.wrap-gap{
+  width: 350px;
+  height: 250px;
+  border: none;
+  background-color: white;
+  margin-bottom: 5%;
+  outline:none;
+  box-shadow: none;
+  
+  
+}
+.align-img{
+  height: 350px;
+  width: 600px;
+  position: relative;
+  margin-bottom: -30%;
+  padding-left: 55%;
+
+}
+
+.logo{
+  height: 41px;
+  width: 45px;  
+}
+.pink-border{
+  padding-top: 1%;
+  background-color: rgb(255, 242, 241);
+}
+.align-text{
+  margin-left: 13%;
+}
+.map{
+ margin-inline: 10%;
+  width: 600px;
+  height: 400px;
+  margin-bottom: 10%;
+  margin-left: 13%;
+  
+}
+.item-gap{
+  display:flex;
+  flex-wrap: wrap;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 7%;
+  padding-top: 2%;
+  justify-content: space-evenly;
+  
+}
+
+
 
 .App_Card {
 background-color: lightyellow;
@@ -601,6 +669,7 @@ margin-left: auto;
 margin-right: auto;
 padding-bottom: 5%;
 margin-bottom: 1%;
+
 }
 
 
@@ -629,11 +698,7 @@ padding-top: 10px;
 
 }
 
-.small-pic{
-  height:100px;
-  width:100px;
-  
-}
+
 .name-form1 {
   justify-content: left;
   box-sizing: border-box;

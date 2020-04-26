@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Navigation from "./Navigation.js";
 import axios from "axios";
 import history from "./history";
+import Dihner from "./images/dihner.png"
 
 export default class Header extends Component{ 
 
@@ -10,17 +11,24 @@ constructor(props) {
 }
 
   clicked() {
-    history.push("/LoginSuccess");
+    history.push("/");
   };
+
+  testing(){
+    console.log("clicked")
+  }
 
   render() {
     return (
     <div className="space-gap">
       <div className="left-align">
-        <div>logo
-          <button onClick={this.clicked}>The Button</button>      
+        <div>
+          
+          <button onClick={this.clicked}>
+          <img className="logo" src={Dihner}></img>
+            </button>      
             </div>
-        <div><h3>Categories</h3></div>
+        <div><h3 onClick={this.testing}>Categories</h3></div>
         <div>
           <input placeholder="Search" className="input-input"/>
         </div>

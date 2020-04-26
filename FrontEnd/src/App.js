@@ -24,7 +24,7 @@ class App extends Component {
     return (
 
           <div>
-            
+          
             <Router history={history}>
           
           <Headroom>
@@ -44,6 +44,7 @@ class App extends Component {
               <Route component={Error} />
               </Switch>
           </Router>
+
           </div>
       
     );

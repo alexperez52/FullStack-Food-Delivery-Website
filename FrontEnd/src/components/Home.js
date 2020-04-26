@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "./Header";
-import Kitchen from "./images/headerpic.jpg";
+import Kitchen from "./images/original.gif";
+import DisplayRestaurants from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/DisplayRestaurants.jsx";
+import Coding from "./images/Startup_SVG.svg";
 
 const Home = () => {
     return (
@@ -9,10 +11,10 @@ const Home = () => {
 
 
 
-                
                 <div className="content-wrapper">
 
                     <img src={Kitchen}></img>
+
                     <div className="text-wrapper">
                         <div className="App_Card">
                             <h1>Create, order or Deliver</h1>
@@ -29,14 +31,37 @@ const Home = () => {
                         </div>
                     </div>
 
-
                 </div>
+
                 <div>
 
-
                 </div>
+
+
             </div>
 
+            <div> 
+                <h1 className="align-text">
+                    Discover Local Restaurants!
+                </h1>
+                <div>
+                    <DisplayRestaurants />
+                    <div className="content-wrapper">
+                    <div className="pink-border">
+                    <img src={Coding} className="align-img"/>
+
+                        <h1 className="align-text">
+                         About
+                         </h1>
+                        <p className="align-text">
+                            Founded and created in Suffolk County Community College.
+                            Check us out on the map!
+                        </p>
+                        <iframe className="map" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=550%20College%20Rd%2C%20Selden%2C%20NY%2011784+(Ghost%20Kitchen)&amp;ie=UTF8&amp;t=&amp;z=13&amp;iwloc=B&amp;output=embed" ></iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

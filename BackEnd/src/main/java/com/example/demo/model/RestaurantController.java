@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,8 @@ public class RestaurantController {
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
     }
 
+
+
     @RequestMapping(value = "owner/restaurants/add", method = RequestMethod.PUT)
     public ResponseEntity<Object> removeItem(@RequestBody MenuItem item, @CurrentUser MyUserPrincipal principal){
         MenuItem deletionItem = itemRepository.getItemById(item.getId());
@@ -66,6 +69,12 @@ public class RestaurantController {
         itemRepository.save(item);
 
         return new ResponseEntity<Object>("Done", HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/restaurants", method = RequestMethod.GET)
+    public ResponseEntity<Object> getRestaurants(){
+
+        return new ResponseEntity<Object>(restaurantRepository.getAllByIdNotNull(), HttpStatus.OK);
     }
 
     @RequestMapping(value="/items", method = RequestMethod.GET)

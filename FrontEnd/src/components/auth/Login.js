@@ -4,7 +4,7 @@ import LoginTool from "./src/components/LoginTool";
 const Login = () => {
     return (
         <div >
-        <LoginTool />
+            <LoginTool />
         </div>
     )
 }

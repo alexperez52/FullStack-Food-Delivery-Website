@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import history from "../history";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Dialog from "./Dialog";
 
 export default class LoginTool extends Component {
   constructor(props) {
@@ -28,23 +29,24 @@ export default class LoginTool extends Component {
       password: this.state.password
     };
 
-    
-    axios.post("/login ", data)
+    axios
+      .post("/login ", data)
 
       .then(response => {
         if (response.statusText === "OK" && response.data.username != "") {
           const updateName = JSON.stringify(data.username);
           console.log(JSON.stringify(data.username));
-          
-          if(response.data.role.role === "OWNER"){
-            history.push("/owner");
+
+          if (response.data.role.role === "OWNER") {
+            history.replace("/owner");
+            window.location.reload();
+          } else if (response.data.role.role === "CUSTOMER") {
+            history.push("/");
+          } else if (response.data.role.role === "DRIVER") {
+            console.log("DRIVER");
           }
-          
-          else{
-            history.push("/LoginSuccess");
-          }          
-        } 
-        else{
+        } else {
+          return <Dialog>Incorrect info</Dialog>;
           history.push("/LoginFail");
         }
         console.log(response);
@@ -53,10 +55,7 @@ export default class LoginTool extends Component {
   }
 
   render() {
-
     return (
-
-
       <div className="acontainer">
         <div className="App_Card">
           <form onSubmit={this.handleSubmit}>
@@ -67,21 +66,25 @@ export default class LoginTool extends Component {
                 </div>
                 <div className="label-div">Username</div>
                 <div className="input-div">
-                  <input className="input-input"
-                  type="username"
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleChange}></input>
+                  <input
+                    className="input-input"
+                    type="username"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                  ></input>
                 </div>
               </div>
               <div className="content-container-div">
                 <div className="label-div">Password</div>
                 <div className="input-div">
-                  <input className="input-input"
-                   type="password"
-                   name="password"
-                   value={this.state.password}
-                   onChange={this.handleChange}></input>
+                  <input
+                    className="input-input"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  ></input>
                 </div>
               </div>
               <div className="checkbox-div">
@@ -113,4 +116,3 @@ export default class LoginTool extends Component {
     );
   }
 }
-

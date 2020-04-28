@@ -5,9 +5,6 @@ import UserList from "../UserList";
 
 const LoginSuccess = () => {
 
-    
-
-    
     axios.get("/users").then(response => console.log(response.data));
 
     return (
@@ -17,10 +14,10 @@ const LoginSuccess = () => {
                 <h2 >
                     LOGIN SUCCESS!
             </h2>
-                <h3>Welcome 
+                <h3>Welcome
             </h3>
-       
-            <UserList />
+
+                <UserList />
             </div>
         </div>
 

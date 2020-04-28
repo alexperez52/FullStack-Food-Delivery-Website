@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 
 class Dialog extends Component {
@@ -6,28 +6,25 @@ class Dialog extends Component {
 
 
 
-    render(){
-
-
+    render() {
         let dialog = (
-            <div className = "dialogStyles">
-            <button className ="dialogCloseButtonStyles" onClick={this.props.onClose}>x</button>
-            <div >
-                {this.props.children}        
-            
+            <div className="dialogStyles">
+                <button className="dialogCloseButtonStyles" onClick={this.props.onClose}>x</button>
+                <div >
+                    {this.props.children}
                 </div>
-        </div>
+            </div>
         );
 
 
-        if(! this.props.isOpen){
+        if (!this.props.isOpen) {
             dialog = null;
         }
         return (
             <div>
                 {dialog}
             </div>
-           
+
         );
     }
 }

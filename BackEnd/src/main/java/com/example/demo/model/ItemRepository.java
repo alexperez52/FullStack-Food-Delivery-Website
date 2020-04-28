@@ -9,6 +9,7 @@ import java.util.Optional;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
+
     Optional<Item> findById(Long id);
 
     Optional<MenuItem> findByNameAndPriceAndDescription(String name, Double price, String description);

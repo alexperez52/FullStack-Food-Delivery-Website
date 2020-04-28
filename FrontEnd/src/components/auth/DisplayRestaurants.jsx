@@ -10,15 +10,8 @@ export default class DisplayRestaurants extends Component {
       posts: [],
       showItems: 6
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
   async componentDidMount() {
     await axios.get("/restaurants").then(res => {
       const posts = res.data;
@@ -26,37 +19,43 @@ export default class DisplayRestaurants extends Component {
     });
   }
 
+  restaurantClicked(e) {
+    history.replace("/restaurant/" + e);
+    console.log(e);
+  }
+
   render() {
     var items = this.state.posts.slice(0, 6);
     return (
       <div>
-      <div className="item-gap">
-        {items.map((postDetail, index) => {
-          return (
-            <div  key={postDetail.id} > 
-            <button className ="wrap-gap" key={postDetail.id} >
-              <img className="small-pic" src={postDetail.imageURL}></img>
-              <div>
-            <div className="restaurant-label">
-              {" "}
-              {postDetail.restaurantName}
-              
-            </div>
-            <div className="description-label">
-            Ratings: {postDetail.ratings}
-            </div>
-            <div className="description-label">
-              {postDetail.category}
-            </div>
-            </div>
-            </button>
-            </div>
-            
-          );
-        })}
+        <div className="item-gap">
+          {items.map((postDetail, index) => {
+            return (
+              <div key={postDetail.id}>
+                <button
+                  key={postDetail}
+                  className="wrap-gap"
+                  onClick={() => this.restaurantClicked(postDetail.id)}
+                >
+                  <img className="small-pic" src={postDetail.imageURL}></img>
+                  <div>
+                    <div className="restaurant-label">
+                      {" "}
+                      {postDetail.restaurantName}
+                    </div>
+                    <div className="description-label">
+                      Ratings: {postDetail.ratings}
+                    </div>
+                    <div className="description-label">
+                      {postDetail.category}
+                    </div>
+                  </div>
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
     );
-    
   }
 }

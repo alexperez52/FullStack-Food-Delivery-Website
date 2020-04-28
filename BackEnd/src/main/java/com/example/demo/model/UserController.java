@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,10 +48,15 @@ public class UserController {
 //        return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
 //    }
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public User testing(@CurrentUser MyUserPrincipal principal){
-        User user = repository.getUserByUsername(principal.getUsername());
-
-        return user;
+    public ResponseEntity<Object> testing(@CurrentUser MyUserPrincipal principal){
+            if(principal==null) {
+                User dummy = new User();
+                return new ResponseEntity<>(dummy,HttpStatus.OK);
+            }
+            else {
+                User user = repository.getUserByUsername(principal.getUsername());
+                return new ResponseEntity<>(user, HttpStatus.OK);
+            }
     }
 
 //    @RequestMapping(value = "/owner/restaurants", method = RequestMethod.POST)

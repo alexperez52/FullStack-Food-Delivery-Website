@@ -5,7 +5,7 @@ const Error = () => {
     return (
         <div>
             <p>
-                    Error: Path does not exist!!
+                Error: Path does not exist!!
             </p>
         </div>
     )

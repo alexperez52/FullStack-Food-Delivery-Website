@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -98,6 +95,22 @@ public class RestaurantController {
 
 
         return new ResponseEntity<>("ok", HttpStatus.OK);
+    }
+
+    @RequestMapping(value ="/specificRestaurant", method= RequestMethod.POST)
+    public ResponseEntity<Object> getRestaurant(@RequestBody Restaurant restaurant){
+
+        Long id = restaurant.getId();
+
+
+        return new ResponseEntity<>(restaurantRepository.getRestaurantById(id), HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value="/restaurantItems", method = RequestMethod.POST)
+    public ResponseEntity<Object> getRestaurantItems(@RequestBody Restaurant restaurant){
+        Restaurant restaurantWithItems = restaurantRepository.getRestaurantById(restaurant.getId());
+        return new ResponseEntity<>( itemRepository.findByRestaurant(restaurantWithItems), HttpStatus.OK);
     }
 
 }

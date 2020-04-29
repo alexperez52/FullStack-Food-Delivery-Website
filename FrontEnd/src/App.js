@@ -34,6 +34,7 @@ class App extends Component {
 
   render() {
 
+
     history.listen((location, action) => {
       window.scrollTo(0, 0);
     });

@@ -24,10 +24,14 @@ export default class RestaurantPage extends Component {
       checkout: [],
       isOpen: false,
       loginIsOpen: false,
-      noItems: false
+      noItems: false,
+      check: false,
+      receipt: false,
+      responseData: []
     };
     this.checkoutBtn = this.checkoutBtn.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
+    this.checkLog = this.checkLog.bind(this);
   }
 
   async componentDidMount() {
@@ -58,6 +62,40 @@ export default class RestaurantPage extends Component {
         const posts = response.data;
         this.setState({ posts });
       });
+  }
+
+  async itemMinus(e) {
+    let floors = [...this.state.checkout];
+
+    const data = {
+      id: e.id,
+      name: e.name,
+      price: e.price,
+      quantity: 1
+    };
+
+    var flag = false;
+    for (var i = 0; i < floors.length; i++) {
+      if (floors[i].id === e.id) {
+        flag = true;
+      }
+    }
+
+    if (floors.length === 0 || !flag) {
+      floors.push(data);
+      await this.setState({ checkout: floors });
+    } else {
+      for (var i = 0; i < floors.length; i++) {
+        if (floors[i].id === e.id) {
+          floors[i].quantity--;
+          if (floors[i].quantity === 0) {
+            floors.splice(i);
+          }
+        }
+      }
+    }
+
+    await this.setState({ checkout: floors });
   }
 
   async itemClick(e) {
@@ -127,6 +165,7 @@ export default class RestaurantPage extends Component {
       if (floors.length > 0) {
         axios.post("/invoice", data).then(response => {
           console.log(response);
+          this.setState({ check: false, receipt: true, responseData: data });
         });
       } else {
         this.setState({ noItems: true });
@@ -138,12 +177,50 @@ export default class RestaurantPage extends Component {
     }
   }
 
+  checkLog() {
+    if (this.state.checkout.length === 0) {
+      this.setState({ noItems: true });
+    } else {
+      if (this.context.isLoggedIn) {
+        this.setState({ check: true });
+      } else {
+        this.setState({ isOpen: true });
+      }
+    }
+  }
+
+  showStatus() {
+    history.replace("/status");
+  }
+
   loginClicked() {
     this.setState({ isOpen: false, loginIsOpen: true });
   }
   render() {
     return (
       <div>
+        <Dialog
+          isOpen={this.state.receipt}
+          onClose={e => this.setState({ receipt: false })}
+        >
+          <label>
+            {this.state.responseData.information}
+            {this.state.responseData.bill}
+          </label>
+          <button onClick={e => this.showStatus()}> view status</button>
+          <button onClick={e => this.setState({ receipt: false })}>
+            {" "}
+            close
+          </button>
+        </Dialog>
+
+        <Dialog
+          isOpen={this.state.check}
+          onClose={e => this.setState({ check: false })}
+        >
+          <button onClick={this.checkoutBtn}>confirm</button>
+        </Dialog>
+
         <Dialog
           isOpen={this.state.noItems}
           onClose={e => this.setState({ noItems: false })}
@@ -219,8 +296,12 @@ export default class RestaurantPage extends Component {
                           <div>Quantity: {postDetail.quantity}</div>
                           <div>ID: {postDetail.id}</div>
                           <div>
-                            <button>+</button>
-                            <button>-</button>
+                            <button onClick={() => this.itemClick(postDetail)}>
+                              +
+                            </button>
+                            <button onClick={() => this.itemMinus(postDetail)}>
+                              -
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -229,7 +310,7 @@ export default class RestaurantPage extends Component {
                 })}
               </div>
             </div>
-            <button className="checkout-button" onClick={this.checkoutBtn}>
+            <button className="checkout-button" onClick={this.checkLog}>
               CHECKOUT
             </button>
           </div>

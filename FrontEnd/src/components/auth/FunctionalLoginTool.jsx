@@ -81,13 +81,13 @@ export default class FunctionalLoginTool extends Component {
             setIsLoggedIn(true);
           }
         } else {
-          history.push("/LoginFail");
+          alert("");
         }
         console.log(response);
       })
       .catch(error => {
         console.log(error);
-        history.push("/lol");
+        alert("lol");
       });
   }
 

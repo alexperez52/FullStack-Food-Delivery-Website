@@ -3,20 +3,31 @@ import axios from "axios";
 import history from "../history";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import Dialog from "./Dialog";
+import Login from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/login.svg";
+import LoginTool from "./FunctionalLoginTool";
 
 export default class RestaurantPage extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
 
     this.state = {
       id: "",
+      user: false,
       posts: [],
       restaurantName: "",
       imageURL: "",
       ratings: "",
       category: "",
-      checkout: []
+      checkout: [],
+      isOpen: false,
+      loginIsOpen: false,
+      noItems: false
     };
+    this.checkoutBtn = this.checkoutBtn.bind(this);
+    this.loginClicked = this.loginClicked.bind(this);
   }
 
   async componentDidMount() {
@@ -47,8 +58,6 @@ export default class RestaurantPage extends Component {
         const posts = response.data;
         this.setState({ posts });
       });
-
-    console.log(this.state.imageURL);
   }
 
   async itemClick(e) {
@@ -81,12 +90,101 @@ export default class RestaurantPage extends Component {
     }
 
     await this.setState({ checkout: floors });
-    this.forceUpdate();
   }
 
+  async checkoutBtn() {
+    var totalCost = 0;
+    var itemsDescription = "";
+    var floors = this.state.checkout;
+
+    for (var i = 0; i < floors.length; i++) {
+      totalCost += floors[i].quantity * floors[i].price;
+      itemsDescription += floors[i].name + ":";
+    }
+
+    var tax = totalCost * 0.0865;
+    var totalCostTax = totalCost + tax;
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+    var todayDate = mm + "/" + dd + "/" + yyyy;
+    var time = new Date().toLocaleTimeString();
+
+    const data = {
+      tax: tax,
+      time: time,
+      rawBill: totalCost,
+      bill: totalCostTax,
+      information: itemsDescription,
+      date: todayDate,
+      restaurant: {
+        id: this.state.id
+      }
+    };
+
+    if (this.context.isLoggedIn) {
+      if (floors.length > 0) {
+        axios.post("/invoice", data).then(response => {
+          console.log(response);
+        });
+      } else {
+        this.setState({ noItems: true });
+        console.log("no items!");
+      }
+    } else {
+      this.setState({ isOpen: true });
+      console.log("else");
+    }
+  }
+
+  loginClicked() {
+    this.setState({ isOpen: false, loginIsOpen: true });
+  }
   render() {
     return (
       <div>
+        <Dialog
+          isOpen={this.state.noItems}
+          onClose={e => this.setState({ noItems: false })}
+        >
+          Shopping cart is Empty !
+        </Dialog>
+
+        <LoginTool
+          isOpen={this.state.loginIsOpen}
+          onClose={e => this.setState({ loginIsOpen: false })}
+        />
+
+        <Dialog
+          isOpen={this.state.isOpen}
+          onClose={e => this.setState({ isOpen: false })}
+        >
+          <div>
+            <div>
+              <div className="horizontal-align">
+                <img className="small-pic" src={Login}></img>
+              </div>
+              <label className="alert-text">
+                Create an account or Login to
+              </label>
+            </div>
+            <div>
+              <label className="alert-text">continue to checkout.</label>
+            </div>
+            <div className="buttons">
+              <button className="alert-button" onClick={this.loginClicked}>
+                LOGIN
+              </button>
+              <button
+                className="alert-button-cancel"
+                onClick={e => this.setState({ isOpen: false })}
+              >
+                CANCEL
+              </button>
+            </div>
+          </div>
+        </Dialog>
         <div className="horiz-align">
           <div className="rest-header">
             <div className="horiz-align">
@@ -102,7 +200,6 @@ export default class RestaurantPage extends Component {
               </div>
             </div>
           </div>
-
           <div className="cart-div">
             <h3 className="cart-label">Cart</h3>
             <div className="shop-container">
@@ -132,7 +229,9 @@ export default class RestaurantPage extends Component {
                 })}
               </div>
             </div>
-            <button className="checkout-button">CHECKOUT</button>
+            <button className="checkout-button" onClick={this.checkoutBtn}>
+              CHECKOUT
+            </button>
           </div>
         </div>
         <div>

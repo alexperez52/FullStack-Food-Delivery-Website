@@ -15,6 +15,12 @@ export default class OwnerPageTool extends Component {
     };
   }
 
+  componentDidMount() {
+    axios.get("/owner").then(response => {
+      const res = response.data;
+      this.setState({ stat: res });
+    });
+  }
   addClicked() {
     history.replace("/owner/restaurants/add");
   }
@@ -28,11 +34,6 @@ export default class OwnerPageTool extends Component {
   }
 
   render() {
-    axios.get("/owner").then(response => {
-      const res = response.data;
-      this.setState({ stat: res });
-    });
-
     return (
       <div>
         <button onClick={this.createClicked}>

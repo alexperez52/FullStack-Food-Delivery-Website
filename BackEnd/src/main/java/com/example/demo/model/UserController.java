@@ -35,22 +35,11 @@ public class UserController {
 
 
 
-//    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
-//    public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
-//        repository.deleteById(id);
-//        return new ResponseEntity<>("Product is deleted successsfully", HttpStatus.OK);
-//    }
-//
-//    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
-//    public ResponseEntity<Object> updateUser(@PathVariable("id") Long id, @RequestBody User updatedUser) {
-//        //TO FIX LATER
-//
-//        return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
-//    }
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ResponseEntity<Object> testing(@CurrentUser MyUserPrincipal principal){
             if(principal==null) {
                 User dummy = new User();
+                dummy.setUsername("dummy");
                 return new ResponseEntity<>(dummy,HttpStatus.OK);
             }
             else {
@@ -58,18 +47,6 @@ public class UserController {
                 return new ResponseEntity<>(user, HttpStatus.OK);
             }
     }
-
-//    @RequestMapping(value = "/owner/restaurants", method = RequestMethod.POST)
-//    public ResponseEntity<Object> createRestaurant(@RequestBody Restaurant restaurant) {
-//
-//        if(repository.findByUsername(currentUser).isPresent()){
-//            repository.findByUsername(currentUser).get().setRestaurant(restaurant);
-//
-//        }
-//        restaurantRepository.save(restaurant);
-//
-//        return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
-//    }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody User user) {

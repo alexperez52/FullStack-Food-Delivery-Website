@@ -3,13 +3,26 @@ import Navigation from "./Navigation";
 import axios from "axios";
 import history from "./history";
 import Dihner from "./images/dihner.png";
+import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
 
 export default class Header extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentUser: ""
+    };
+    this.clicked = this.clicked.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ currentUser: this.context.currentUser });
   }
 
   clicked() {
+    const { setCurrentUser } = this.context;
+    setCurrentUser("null");
     history.push("/");
   }
 

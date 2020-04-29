@@ -22,6 +22,9 @@ public class RestaurantController {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    InvoiceRepository invoiceRepository;
+
     @RequestMapping(value = "/owner", method = RequestMethod.GET)
     public boolean hasRestaurant(@CurrentUser MyUserPrincipal principal){
         User user = userRepository.findByUsername(principal.getUsername()).get();
@@ -111,6 +114,19 @@ public class RestaurantController {
     public ResponseEntity<Object> getRestaurantItems(@RequestBody Restaurant restaurant){
         Restaurant restaurantWithItems = restaurantRepository.getRestaurantById(restaurant.getId());
         return new ResponseEntity<>( itemRepository.findByRestaurant(restaurantWithItems), HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value="/invoice", method = RequestMethod.POST)
+    public ResponseEntity<Object> createInvoice(@RequestBody Invoice invoice, @CurrentUser MyUserPrincipal principal){
+        User user = userRepository.getUserByUsername(principal.getUsername());
+        Restaurant foundRestaurant = restaurantRepository.getRestaurantById(invoice.getRestaurant().getId());
+
+        invoice.setUser(user);
+        invoice.setRestaurant(foundRestaurant);
+        invoiceRepository.save(invoice);
+        return new ResponseEntity<>("Invoice created", HttpStatus.OK);
+
     }
 
 }

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import history from "./history";
 import { Link } from "react-router-dom";
+import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
 
 export default class Navigation extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
 
@@ -11,28 +13,19 @@ export default class Navigation extends Component {
       isLoggedIn: false,
       role: ""
     };
+    this.onclick = this.onclick.bind(this);
   }
 
-  async componentDidMount() {
-    await axios.get("/test").then(response => {
-      if (response.data.role === null) {
-        console.log(response);
-        console.log("not logged in");
-      } else {
-        this.setState({ role: response.data.role.role });
-        this.setState({ isLoggedIn: true });
-        console.log(this.state.isLoggedIn);
-        console.log(this.state.role);
-      }
-    });
+  componentDidMount() {
+    this.setState({ isLoggedIn: this.context.isLoggedIn });
   }
 
   onclick() {
-    console.log("test");
+    const { setIsLoggedIn } = this.context;
+    setIsLoggedIn(false);
 
     axios.post("/logout5").then(response => {
       history.replace("/");
-      window.location.reload();
     });
   }
 
@@ -41,17 +34,17 @@ export default class Navigation extends Component {
       <div>
         <div className="PageSwitcher">
           <div>
-            {!this.state.isLoggedIn && (
+            {!this.context.isLoggedIn && (
               <Link to="/login" className="PageSwitcher__Item">
                 Sign In
               </Link>
             )}
-            {!this.state.isLoggedIn && (
+            {!this.context.isLoggedIn && (
               <Link to="/registration" className="PageSwitcher__Item">
                 Sign Up
               </Link>
             )}
-            {this.state.isLoggedIn && (
+            {this.context.isLoggedIn && (
               <button onClick={this.onclick} className="PageSwitcher__Item">
                 Logout{this.state.role}
               </button>

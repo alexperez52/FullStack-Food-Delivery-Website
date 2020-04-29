@@ -10,5 +10,6 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
     Restaurant getRestaurantById(Long id);
 
+
     List<Restaurant> getAllByIdNotNull();
 }

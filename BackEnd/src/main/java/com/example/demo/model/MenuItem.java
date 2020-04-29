@@ -1,13 +1,12 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 public class MenuItem extends Item {
+
 
     public MenuItem(){
 

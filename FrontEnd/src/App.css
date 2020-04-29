@@ -4,18 +4,43 @@
 
 .dialogStyles {
   width: 500px;
-  max-width: 100%;
   margin: 0 auto;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background-color: #eee;
+  background-color: white;
   padding: 10px 20px 40px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, .3);
+  /* for real browsers */
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .3);
+
+}
+
+
+.alert-text {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 22px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  color: grey;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  margin-left: 2rem;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  column-gap: 2rem;
 }
 
 .dialogCloseButtonStyles {
@@ -28,6 +53,7 @@
   height: 30px;
   font-weight: bold;
   align-self: flex-end;
+
 
 }
 
@@ -576,7 +602,7 @@
 }
 
 .header {
-  height: 30rem;
+  height: 35rem;
 }
 
 .selection-label {
@@ -756,7 +782,42 @@
 
 }
 
+.functional-card {
+  background-color: lightyellow;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 
+  box-sizing: border-box;
+  color: rgb(33, 37, 41);
+  display: inherit;
+  flex-direction: column;
+  font-weight: 400;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3), 1px 12px 14px rgba(0, 0, 0, 0.3);
+  line-height: 24px;
+  text-align: center;
+  width: 25rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5%;
+  margin-bottom: 1%;
+
+
+  margin: 0 auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  padding: 10px 20px 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, .3);
+  /* for real browsers */
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .3);
+}
 
 .App_Card {
   background-color: lightyellow;
@@ -942,6 +1003,36 @@ code {
   background-color: #FFFAFA;
   align-content: center;
 
+}
+
+
+
+.alert-button {
+  width: 9rem;
+  height: 3rem;
+  background-color: salmon;
+  border-radius: 2rem;
+  border: none;
+  color: white;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 22px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
+}
+
+.alert-button-cancel {
+  width: 9rem;
+  height: 3rem;
+  background-color: gray;
+  border-radius: 2rem;
+  border: none;
+  color: white;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 22px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
 }
 
 .checkout-button {

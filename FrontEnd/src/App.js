@@ -13,13 +13,24 @@ import Headroom from 'react-headroom';
 import CreateRestaurant from './components/auth/CreateRestaurantTool';
 import AddItems from "./components/auth/AddItemsTool";
 import OwnerPage from "./components/auth/OwnerPageTool";
-import DisplayItems from './components/auth/DisplayItemsTool';
 import RestaurantPage from './components/auth/RestaurantPage';
+import { UserProvider } from './components/auth/userContext';
+import axios from 'axios';
 
 
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userName: "",
+      role: ""
+    };
+  }
+
+
 
   render() {
 
@@ -30,7 +41,6 @@ class App extends Component {
     return (
 
       <div>
-
         <Router history={history}>
           <Headroom>
             <Header />
@@ -50,8 +60,7 @@ class App extends Component {
             <Route component={Error} />
           </Switch>
         </Router>
-
-      </div>
+      </div >
 
     );
   }

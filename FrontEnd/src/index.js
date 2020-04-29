@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { GlobalProvider } from './components/auth/userContext';
 
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<div>
+    <GlobalProvider value={false}>
+        <App />
+    </GlobalProvider>
+</div >
+    , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

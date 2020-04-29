@@ -3,8 +3,10 @@ import axios from "axios";
 import history from "../history";
 import { Link } from "react-router-dom";
 import Dialog from "./Dialog";
+import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
 
 export default class LoginTool extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
 
@@ -22,31 +24,32 @@ export default class LoginTool extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const data = {
       username: this.state.username,
       password: this.state.password
     };
+    const { setIsLoggedIn, setCurrentUser } = this.context;
 
     axios
       .post("/login ", data)
-
       .then(response => {
         if (response.statusText === "OK" && response.data.username != "") {
-          const updateName = JSON.stringify(data.username);
-          console.log(JSON.stringify(data.username));
-
           if (response.data.role.role === "OWNER") {
+            setCurrentUser("OWNER");
+            setIsLoggedIn(true);
             history.replace("/owner");
-            window.location.reload();
           } else if (response.data.role.role === "CUSTOMER") {
-            history.push("/");
+            setCurrentUser("CUSTOMER");
+            setIsLoggedIn(true);
+            history.replace("/");
           } else if (response.data.role.role === "DRIVER") {
-            console.log("DRIVER");
+            setCurrentUser("DRIVER");
+            setIsLoggedIn(true);
+            history.replace("/");
           }
         } else {
-          return <Dialog>Incorrect info</Dialog>;
           history.push("/LoginFail");
         }
         console.log(response);

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Navigation from "./Navigation";
 import axios from "axios";
 import history from "./history";
-import Logo from "./images/freelogo.png";
+import Logo from "./images/logo.png";
 import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import Exc from "./images/exc.png";
 
 export default class Header extends Component {
   static contextType = GlobalContext;
@@ -39,13 +40,15 @@ export default class Header extends Component {
             </button>
           </div>
           <div className="r12">
+            <label className="logo-text logo-col">e</label>
             <label className="logo-text" onClick={this.testing}>
-              ediboo
+              diboo
             </label>
           </div>
           {/* <div>
             <input placeholder="Search" className="input-input" />
           </div> */}
+          <img className="exc" src={Exc}></img>
         </div>
         <div className="right-align">
           <Navigation />

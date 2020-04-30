@@ -92,7 +92,7 @@ export default class RestaurantPage extends Component {
         if (floors[i].id === e.id) {
           floors[i].quantity--;
           if (floors[i].quantity === 0) {
-            floors.splice(i);
+            floors.splice(i, 1);
           }
         }
       }
@@ -153,10 +153,10 @@ export default class RestaurantPage extends Component {
     var time = new Date().toLocaleTimeString();
 
     const data = {
-      tax: tax.toFixed(2),
+      tax: tax,
       time: time,
-      rawBill: totalCost.toFixed(2),
-      bill: totalCostTax.toFixed(2),
+      rawBill: totalCost,
+      bill: totalCostTax,
       information: itemsDescription,
       date: todayDate,
       restaurant: {
@@ -168,13 +168,13 @@ export default class RestaurantPage extends Component {
       if (floors.length > 0) {
         axios.post("/invoice", data).then(response => {
           console.log(response);
-          this.setState({
-            check: false,
-            receipt: true,
-            responseData: floors,
-            priceData: data,
-            checkout: []
-          });
+        });
+        this.setState({
+          check: false,
+          receipt: true,
+          responseData: floors,
+          priceData: data,
+          checkout: []
         });
       } else {
         this.setState({ noItems: true });
@@ -245,13 +245,17 @@ export default class RestaurantPage extends Component {
               <div>
                 <div>
                   <label>Tax: </label>
-                  <label>{this.state.priceData.tax}</label>
+                  <label>
+                    {Math.round(this.state.priceData.tax * 100) / 100}
+                  </label>
                 </div>
               </div>
               <div>
                 <div>
                   <label>Total: </label>
-                  <label>{this.state.priceData.bill}</label>
+                  <label>
+                    {Math.round(this.state.priceData.bill * 100) / 100}
+                  </label>
                 </div>
               </div>
             </div>
@@ -278,14 +282,7 @@ export default class RestaurantPage extends Component {
                 <label>Card Number</label>
               </div>
               <div>
-                <input
-                  className="input-input"
-                  type="input"
-                  name="tel"
-                  pattern="[0-9]*"
-                  value={this.state.number}
-                  onChange={this.handleChange}
-                ></input>
+                <input className="input-input"></input>
               </div>
               <div className="lab-gap">
                 <label>Expiration </label>
@@ -294,20 +291,8 @@ export default class RestaurantPage extends Component {
               </div>
               <div className="t">
                 <div className="input-div">
-                  <input
-                    className="name-input"
-                    type="date"
-                    name="firstName"
-                    value={this.state.firstName}
-                    onChange={this.handleChange}
-                  ></input>{" "}
-                  <input
-                    className="name-input"
-                    type="password"
-                    name="firstName"
-                    value={this.state.firstName}
-                    onChange={this.handleChange}
-                  ></input>
+                  <input className="name-input"></input>{" "}
+                  <input className="name-input"></input>
                 </div>
               </div>
 
@@ -315,13 +300,7 @@ export default class RestaurantPage extends Component {
                 <div>
                   <label>Card Holder</label>
                 </div>
-                <input
-                  className="input-input"
-                  type="input"
-                  name="firstName"
-                  value={this.state.firstName}
-                  onChange={this.handleChange}
-                ></input>
+                <input className="input-input"></input>
               </div>
               <hr></hr>
               <div>
@@ -333,20 +312,8 @@ export default class RestaurantPage extends Component {
                   </div>
                   <div className="t">
                     <div className="input-div">
-                      <input
-                        className="name-input"
-                        type="address"
-                        name="address"
-                        value={this.state.firstName}
-                        onChange={this.handleChange}
-                      ></input>{" "}
-                      <input
-                        className="name-input"
-                        type="town"
-                        name="town"
-                        value={this.state.firstName}
-                        onChange={this.handleChange}
-                      ></input>
+                      <input className="name-input"></input>{" "}
+                      <input className="name-input"></input>
                     </div>
                   </div>
                 </div>
@@ -357,20 +324,8 @@ export default class RestaurantPage extends Component {
                 </div>
                 <div className="t">
                   <div className="input-div">
-                    <input
-                      className="name-input"
-                      type="input"
-                      name="zipcode"
-                      value={this.state.firstName}
-                      onChange={this.handleChange}
-                    ></input>{" "}
-                    <input
-                      className="name-input"
-                      type="input"
-                      name="state"
-                      value={this.state.firstName}
-                      onChange={this.handleChange}
-                    ></input>
+                    <input className="name-input"></input>{" "}
+                    <input className="name-input"></input>
                   </div>
                 </div>
               </div>

@@ -63,7 +63,7 @@ export default class FunctionalLoginTool extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    const { setIsLoggedIn, setCurrentUser } = this.context;
+    const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
 
     axios
       .post("/login ", data)
@@ -80,6 +80,7 @@ export default class FunctionalLoginTool extends Component {
             setCurrentUser("DRIVER");
             setIsLoggedIn(true);
           }
+          setUserName(this.state.username);
         } else {
           alert("");
         }

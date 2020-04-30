@@ -39,7 +39,7 @@ export default class LoginTool extends Component {
           if (response.data.role.role === "OWNER") {
             setCurrentUser("OWNER");
             setIsLoggedIn(true);
-            setUserName(this.state.username);
+
             history.replace("/owner");
           } else if (response.data.role.role === "CUSTOMER") {
             setCurrentUser("CUSTOMER");
@@ -50,6 +50,7 @@ export default class LoginTool extends Component {
             setIsLoggedIn(true);
             history.replace("/");
           }
+          setUserName(this.state.username);
         } else {
           history.push("/LoginFail");
         }

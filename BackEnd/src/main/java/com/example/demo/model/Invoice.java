@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -13,11 +14,11 @@ public class Invoice {
     @Column(name="invoice_id")
     private Long id;
 
-    private Double tax;
+    private BigDecimal tax;
 
     private String time;
-    private Double rawBill;
-    private Double bill;
+    private BigDecimal rawBill;
+    private BigDecimal bill;
 
     private String information;
     private String date;
@@ -45,19 +46,19 @@ public class Invoice {
         this.id = id;
     }
 
-    public Double getBill() {
+    public BigDecimal getBill() {
         return bill;
     }
 
-    public void setBill(Double bill) {
+    public void setBill(BigDecimal bill) {
         this.bill = bill;
     }
 
-    public Double getTax() {
+    public BigDecimal getTax() {
         return tax;
     }
 
-    public void setTax(Double tax) {
+    public void setTax(BigDecimal tax) {
         this.tax = tax;
     }
 
@@ -77,11 +78,11 @@ public class Invoice {
         this.time = time;
     }
 
-    public Double getRawBill() {
+    public BigDecimal getRawBill() {
         return rawBill;
     }
 
-    public void setRawBill(Double rawBill) {
+    public void setRawBill(BigDecimal rawBill) {
         this.rawBill = rawBill;
     }
 

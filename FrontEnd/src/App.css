@@ -10,7 +10,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background-color: white;
+  background-color: rgb(243, 204, 152);
   padding: 10px 20px 40px;
   border-radius: 8px;
   display: flex;
@@ -81,7 +81,7 @@
 }
 
 .right-align {
-  background-color: white;
+  background-color: #323135;
   display: flex;
   justify-content: left;
   column-gap: 4%;
@@ -91,11 +91,11 @@
 }
 
 .left-align {
-  background-color: white;
+  background-color: #323135;
   display: flex;
   justify-content: left;
   column-gap: 4%;
-  padding-left: 5%;
+  padding-left: 8%;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -103,11 +103,11 @@
 
 .space-gap {
   display: flex;
-  background-color: white;
+  background-color: #323135;
   justify-content: space-between;
   padding-right: 3%;
   padding-top: 0.6%;
-  border-color: gray;
+  border-color: #323135;
   border-style: solid;
   border-width: thin;
 
@@ -747,8 +747,33 @@
 }
 
 .logo {
-  height: 41px;
-  width: 45px;
+  height: 70px;
+  width: 110px;
+
+}
+
+.r12 {
+  margin-top: 1rem;
+}
+
+.logo-text {
+  color: white;
+  height: inherit;
+  color: #ffffff;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 35px;
+
+  letter-spacing: -0.8px;
+  word-spacing: 6px;
+  font-weight: 700;
+}
+
+.button-logo {
+  background-color: inherit;
+  border-color: inherit;
+  border-style: none;
+  border: none;
+  height: inherit;
 }
 
 .pink-border {
@@ -1171,4 +1196,57 @@ code {
   display: inline-block;
   padding-bottom: 2px;
   margin-left: 5px;
+}
+
+.receipt-titles {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.receipt-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.t {
+  letter-spacing: 0.3rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.e {
+  word-spacing: 5.2rem;
+
+}
+
+.f {
+  word-spacing: 7.4rem;
+
+}
+
+.lab-gap {
+  word-spacing: 6.4rem;
+}
+
+.button-sp {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-size {
+  width: 24rem;
+  height: 7rem;
+  margin-left: 3.5rem;
+}
+
+.Page_item {
+  background-color: red;
 }

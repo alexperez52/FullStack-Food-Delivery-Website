@@ -30,7 +30,7 @@ export default class LoginTool extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    const { setIsLoggedIn, setCurrentUser } = this.context;
+    const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
 
     axios
       .post("/login ", data)
@@ -39,6 +39,7 @@ export default class LoginTool extends Component {
           if (response.data.role.role === "OWNER") {
             setCurrentUser("OWNER");
             setIsLoggedIn(true);
+            setUserName(this.state.username);
             history.replace("/owner");
           } else if (response.data.role.role === "CUSTOMER") {
             setCurrentUser("CUSTOMER");

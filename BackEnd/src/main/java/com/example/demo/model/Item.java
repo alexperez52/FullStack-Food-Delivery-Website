@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+
 //@Entity
 //@Table(name = "items")
 @MappedSuperclass
@@ -16,7 +18,7 @@ public class Item {
 
     private String description;
 
-    private Double price;
+    private BigDecimal price;
 
     private String imageURL;
 
@@ -24,7 +26,7 @@ public class Item {
     @JoinColumn(name = "restaurant_id", referencedColumnName = "restaurant_id")
     private Restaurant restaurant;
 
-    public Item(String name, Double price, String description, String imgURL) {
+    public Item(String name, BigDecimal price, String description, String imgURL) {
     }
 
     public Item(){
@@ -56,11 +58,11 @@ public class Item {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navigation from "./Navigation";
 import axios from "axios";
 import history from "./history";
-import Dihner from "./images/dihner.png";
+import Logo from "./images/freelogo.png";
 import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
 
 export default class Header extends Component {
@@ -22,7 +22,6 @@ export default class Header extends Component {
 
   clicked() {
     const { setCurrentUser } = this.context;
-    setCurrentUser("null");
     history.push("/");
   }
 
@@ -35,16 +34,18 @@ export default class Header extends Component {
       <div className="space-gap">
         <div className="left-align">
           <div>
-            <button onClick={this.clicked}>
-              <img className="logo" src={Dihner}></img>
+            <button onClick={this.clicked} className="button-logo">
+              <img className="logo" src={Logo}></img>
             </button>
           </div>
-          <div>
-            <h3 onClick={this.testing}>Categories</h3>
+          <div className="r12">
+            <label className="logo-text" onClick={this.testing}>
+              ediboo
+            </label>
           </div>
-          <div>
+          {/* <div>
             <input placeholder="Search" className="input-input" />
-          </div>
+          </div> */}
         </div>
         <div className="right-align">
           <Navigation />

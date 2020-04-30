@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,7 @@ public class Restaurant {
     private String restaurantName;
     private String imageURL;
 
-    private Double ratings;
+    private BigDecimal ratings;
 
     private String category;
 
@@ -41,11 +42,11 @@ public class Restaurant {
         this.imageURL = imageURL;
     }
 
-    public Double getRatings() {
+    public BigDecimal getRatings() {
         return ratings;
     }
 
-    public void setRatings(Double ratings) {
+    public void setRatings(BigDecimal ratings) {
         this.ratings = ratings;
     }
 

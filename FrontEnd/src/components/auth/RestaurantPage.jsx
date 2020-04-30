@@ -7,6 +7,7 @@ import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/co
 import Dialog from "./Dialog";
 import Login from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/login.svg";
 import LoginTool from "./FunctionalLoginTool";
+import CreditCard from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/creditcard.png";
 
 export default class RestaurantPage extends Component {
   static contextType = GlobalContext;
@@ -27,7 +28,9 @@ export default class RestaurantPage extends Component {
       noItems: false,
       check: false,
       receipt: false,
-      responseData: []
+      responseData: [],
+      priceData: "",
+      bill: ""
     };
     this.checkoutBtn = this.checkoutBtn.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
@@ -150,10 +153,10 @@ export default class RestaurantPage extends Component {
     var time = new Date().toLocaleTimeString();
 
     const data = {
-      tax: tax,
+      tax: tax.toFixed(2),
       time: time,
-      rawBill: totalCost,
-      bill: totalCostTax,
+      rawBill: totalCost.toFixed(2),
+      bill: totalCostTax.toFixed(2),
       information: itemsDescription,
       date: todayDate,
       restaurant: {
@@ -165,7 +168,13 @@ export default class RestaurantPage extends Component {
       if (floors.length > 0) {
         axios.post("/invoice", data).then(response => {
           console.log(response);
-          this.setState({ check: false, receipt: true, responseData: data });
+          this.setState({
+            check: false,
+            receipt: true,
+            responseData: floors,
+            priceData: data,
+            checkout: []
+          });
         });
       } else {
         this.setState({ noItems: true });
@@ -182,6 +191,14 @@ export default class RestaurantPage extends Component {
       this.setState({ noItems: true });
     } else {
       if (this.context.isLoggedIn) {
+        var floors = this.state.checkout;
+        var totalCost = 0;
+        for (var i = 0; i < floors.length; i++) {
+          totalCost += floors[i].quantity * floors[i].price;
+        }
+        var totalCostTax = totalCost * 1.0865;
+
+        this.setState({ bill: totalCostTax.toFixed(2) });
         this.setState({ check: true });
       } else {
         this.setState({ isOpen: true });
@@ -203,10 +220,44 @@ export default class RestaurantPage extends Component {
           isOpen={this.state.receipt}
           onClose={e => this.setState({ receipt: false })}
         >
-          <label>
-            {this.state.responseData.information}
-            {this.state.responseData.bill}
-          </label>
+          <div className="full-receipt">
+            <div className="receipt-titles">
+              <label>Name</label>
+              <label>Quantity</label>
+              <label>Price</label>
+            </div>
+
+            <div className="receipt-items">
+              {this.state.responseData.map((postDetail, index) => {
+                return (
+                  <div key={index}>
+                    <div className="receipt-titles">
+                      <div>{postDetail.name}</div>
+                      <div>{postDetail.quantity}</div>
+                      <div>{postDetail.price} </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="receipt-price">
+              <div>
+                <div>
+                  <label>Tax: </label>
+                  <label>{this.state.priceData.tax}</label>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <label>Total: </label>
+                  <label>{this.state.priceData.bill}</label>
+                </div>
+              </div>
+            </div>
+
+            <div className="shipment-info"></div>
+          </div>
           <button onClick={e => this.showStatus()}> view status</button>
           <button onClick={e => this.setState({ receipt: false })}>
             {" "}
@@ -218,7 +269,120 @@ export default class RestaurantPage extends Component {
           isOpen={this.state.check}
           onClose={e => this.setState({ check: false })}
         >
-          <button onClick={this.checkoutBtn}>confirm</button>
+          <div>
+            <img src={CreditCard} className="card-size"></img>
+          </div>
+          <div className="center-content">
+            <form>
+              <div>
+                <label>Card Number</label>
+              </div>
+              <div>
+                <input
+                  className="input-input"
+                  type="input"
+                  name="tel"
+                  pattern="[0-9]*"
+                  value={this.state.number}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div className="lab-gap">
+                <label>Expiration </label>
+
+                <label>CV-Code</label>
+              </div>
+              <div className="t">
+                <div className="input-div">
+                  <input
+                    className="name-input"
+                    type="date"
+                    name="firstName"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
+                  ></input>{" "}
+                  <input
+                    className="name-input"
+                    type="password"
+                    name="firstName"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
+                  ></input>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <label>Card Holder</label>
+                </div>
+                <input
+                  className="input-input"
+                  type="input"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <hr></hr>
+              <div>
+                <div>
+                  <div className="e">
+                    <label>Address-Line </label>
+
+                    <label>Town</label>
+                  </div>
+                  <div className="t">
+                    <div className="input-div">
+                      <input
+                        className="name-input"
+                        type="address"
+                        name="address"
+                        value={this.state.firstName}
+                        onChange={this.handleChange}
+                      ></input>{" "}
+                      <input
+                        className="name-input"
+                        type="town"
+                        name="town"
+                        value={this.state.firstName}
+                        onChange={this.handleChange}
+                      ></input>
+                    </div>
+                  </div>
+                </div>
+                <div className="f">
+                  <label>Zipcode </label>
+
+                  <label>State</label>
+                </div>
+                <div className="t">
+                  <div className="input-div">
+                    <input
+                      className="name-input"
+                      type="input"
+                      name="zipcode"
+                      value={this.state.firstName}
+                      onChange={this.handleChange}
+                    ></input>{" "}
+                    <input
+                      className="name-input"
+                      type="input"
+                      name="state"
+                      value={this.state.firstName}
+                      onChange={this.handleChange}
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <div className="button-sp">
+                {" "}
+                <button className="alert-button" onClick={this.checkoutBtn}>
+                  Pay {this.state.bill}
+                </button>
+                <button className="alert-button-cancel">cancel</button>
+              </div>
+            </form>
+          </div>
         </Dialog>
 
         <Dialog

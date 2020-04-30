@@ -35,10 +35,29 @@ public class RestaurantController {
     public ResponseEntity<Object> createRestaurant(@RequestBody Restaurant restaurant, @CurrentUser MyUserPrincipal principal) {
 
         if(userRepository.findById(principal.getId()).isPresent()){
-            userRepository.findById(principal.getId()).get().setRestaurant(restaurant);
+            if(userRepository.findById(principal.getId()).get().getRestaurant() == null) {
 
+                userRepository.findById(principal.getId()).get().setRestaurant(restaurant);
+                restaurantRepository.save(restaurant);
+
+            }
+            else{
+                Restaurant updateRest =  userRepository.findById(principal.getId()).get().getRestaurant();
+                if(restaurant.getRestaurantName() != null) {
+                    updateRest.setRestaurantName(restaurant.getRestaurantName());
+                }
+                if(restaurant.getCategory() != null) {
+                    updateRest.setCategory(restaurant.getCategory());
+                }
+                if(restaurant.getRatings() != null) {
+                    updateRest.setRatings(restaurant.getRatings());
+                }
+                if(restaurant.getImageURL() != null) {
+                    updateRest.setImageURL(restaurant.getImageURL());
+                }
+                restaurantRepository.save(updateRest);
+            }
         }
-        restaurantRepository.save(restaurant);
 
         return new ResponseEntity<>("Done", HttpStatus.ACCEPTED);
     }

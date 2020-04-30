@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import Kitchen from "./images/headerpic.jpg";
+import Kitchen from "./images/sample.jpg";
 import DisplayRestaurants from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/DisplayRestaurants.jsx";
 import Coding from "./images/Startup_SVG.svg";
 

@@ -11,19 +11,25 @@ export default class Navigation extends Component {
 
     this.state = {
       isLoggedIn: false,
-      role: ""
+      currentUser: "",
+      userName: ""
     };
     this.onclick = this.onclick.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ isLoggedIn: this.context.isLoggedIn });
+    this.setState({
+      isLoggedIn: this.context.isLoggedIn,
+      currentUser: this.context.role,
+      userName: this.context.username
+    });
   }
 
   onclick() {
-    const { setIsLoggedIn } = this.context;
+    const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
     setIsLoggedIn(false);
-
+    setCurrentUser("");
+    setUserName("");
     axios.post("/logout5").then(response => {
       history.replace("/");
     });
@@ -42,6 +48,12 @@ export default class Navigation extends Component {
             {!this.context.isLoggedIn && (
               <Link to="/registration" className="PageSwitcher__Item">
                 Sign Up
+              </Link>
+            )}
+
+            {this.context.currentUser === "OWNER" && (
+              <Link to="/login" className="PageSwitcher__Item Page_item">
+                Welcome {this.context.username}
               </Link>
             )}
             {this.context.isLoggedIn && (

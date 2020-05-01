@@ -37,11 +37,12 @@ export default class Navigation extends Component {
 
   onclick() {
     const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
-    setIsLoggedIn(false);
-    setCurrentUser("");
-    setUserName("");
+    // setIsLoggedIn(false);
+    // setCurrentUser("");
+    // setUserName("");
     axios.post("/logout5").then((response) => {
       history.replace("/");
+      window.location.reload();
     });
     this.setState({
       isLoggedIn: this.context.isLoggedIn,

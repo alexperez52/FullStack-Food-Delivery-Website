@@ -581,7 +581,7 @@
   top: 0;
   left: 0;
   position: relative;
-  opacity: 60%;
+  opacity: 70%;
   height: 32rem;
 }
 
@@ -828,7 +828,7 @@
   line-height: 24px;
   text-align: center;
   width: 25%;
-  max-height: 300px;
+  max-height: 20rem;
   margin-left: 30rem;
   padding-bottom: 5%;
   margin-bottom: 1%;
@@ -869,11 +869,14 @@
   background-color: rgb(193, 72, 72);
   border-color: black;
 }
+
 .search-size {
   display: flex;
   margin-left: 1rem;
   max-width: 17rem;
+  margin-top: -0.6rem;
 }
+
 .acontainer {
   padding-top: 10px;
   background-color: #eff0eb;
@@ -1226,4 +1229,105 @@ code {
 
 .Page_item {
   background-color: red;
+}
+
+.header-par {
+  position: absolute;
+  margin-top: -19%;
+  margin-left: 36%;
+  font-size: 30px;
+  color: rgb(213, 63, 63);
+  font-weight: normal;
+  max-width: 50rem;
+  font-weight: bold;
+  font-family: "Lucida Console", Monaco, monospace;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
+}
+
+.header-hr {
+  position: absolute;
+  margin-top: -20.6%;
+  margin-left: 30%;
+  width: 1000px;
+  color: white;
+  font-family: graphik;
+  font-weight: bold;
+
+
+}
+
+.header-btn {
+  position: absolute;
+  margin-top: 30%;
+  margin-left: -44%;
+  width: 11rem;
+  height: 3.5rem;
+  background-color: #f26226;
+  border-radius: 0.5rem;
+  border: ivory;
+  color: white;
+  font-family: "Cera Pro", "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 22px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
+}
+
+.header-text {
+  position: absolute;
+  margin-top: -35%;
+  margin-left: 38%;
+  font-size: 90px;
+  letter-spacing: -0.1rem;
+
+  color: white;
+  font-family: graphik;
+  font-weight: bold;
+
+
+}
+
+.header-card-top {
+  display: flex;
+  padding-top: 1rem;
+  color: white;
+  background-color: #323135;
+}
+
+.timer {
+  font-size: 25px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 23px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
+}
+
+.header-card-text {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 30px;
+  letter-spacing: -1.0px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: none;
+}
+
+.mapping {
+  margin-left: 32%;
+  width: 120px;
+  height: 80px;
+}
+
+.s-r {
+  color: darkolivegreen;
+  margin-left: -0.5rem;
 }

@@ -3,6 +3,7 @@ import Kitchen from "./images/stock.jpg";
 import DisplayRestaurants from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/DisplayRestaurants.jsx";
 import Coding from "./images/Startup_SVG.svg";
 import Grey from "./images/grey.jpg"
+import Mapping from "./images/mapping.png"
 import ReactSearchBox from "react-search-box";
 import Axios from "axios";
 import history from "./history";
@@ -14,22 +15,12 @@ export default class Home extends Component {
 
         this.state = {
             data: [],
-            id: ""
+            id: "",
+            date: new Date()
         };
-
-
-
-        //     this.handleChange = this.handleChange.bind(this);
-        // }
-
-        // handleChange(event) {
-        //     this.setState({
-        //         [event.target.name]: event.target.value
-        //     });
     }
 
     async componentDidMount() {
-
 
         await Axios.get("/restaurants").then(res => {
             const posts = res.data;
@@ -47,37 +38,16 @@ export default class Home extends Component {
             this.setState({ data: newdata });
         });
 
-        console.log(this.state.data)
-        // const data = [
-        //     {
-        //         key: 'john',
-        //         value: 'John Doe',
-        //     },
-        //     {
-        //         key: 'jane',
-        //         value: 'Jane Doe',
-        //     },
-        //     {
-        //         key: 'mary',
-        //         value: 'Mary Phillips',
-        //     },
-        //     {
-        //         key: 'robert',
-        //         value: 'Robert',
-        //     },
-        //     {
-        //         key: 'karius',
-        //         value: 'Karius',
-        //     },
-        // ]
-
-        // console.log(data)
-
-        // this.setState({ data })
 
     }
     goTo(e) {
         history.replace("/restaurant/" + e);
+    }
+
+    callMe() {
+        setInterval(() => {
+            this.setState({ date: new Date() })
+        }, 1000);
     }
 
     render() {
@@ -85,18 +55,30 @@ export default class Home extends Component {
             <div>
                 <div className="home-header">
                     <div className="d">
-
-
                         <img src={Kitchen} className="header"></img>
                         <img src={Grey} className="grey"></img>
+                        <p className="header-text">Food when you want it.</p>
+
+                        <hr className="header-hr">
+                        </hr>
+                        <p className="header-par">Sign up as an Owner to put your restaurant out there or sign up as a Customer to order from your favorite restaurants or simply sign up as a driver to fullfil people's orders while getting paid! </p>
+
+                        <button className="header-btn"> Get started</button>
+
 
                         <div className="text-wrapper">
                             <div className="header-card">
-                                <h1>Create, Order, Deliver</h1>
-                                <h2> All made easily online</h2>
+                                <div className="header-card-top">
+                                    <label className="timer">
+                                        {this.state.date.toLocaleString()}
+                                    </label>
+                                </div>
+                                {this.callMe()}
+                                <h1 className="header-card-text">Create, Order, Deliver</h1>
+                                <img src={Mapping} className="mapping"></img>
                                 <div>
                                     <div className="Left__Align">
-                                        <h3>Search for a Restaurant</h3>
+                                        <h3 className="s-r">Search for a Restaurant</h3>
                                     </div>
                                     <div className="search-size">
                                         <ReactSearchBox
@@ -112,6 +94,7 @@ export default class Home extends Component {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div>
                     </div>

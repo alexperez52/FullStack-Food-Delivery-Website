@@ -1,24 +1,22 @@
-package com.example.demo.model;
+package com.example.demo.controller;
 
+import com.example.demo.model.*;
+import com.example.demo.repository.AddressRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.repository.UserRepository;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.multi.MultiButtonUI;
-import java.util.Stack;
 
 @RestController
 public class UserController {
@@ -33,6 +31,42 @@ public class UserController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    AddressRepository addressRepository;
+
+
+    @RequestMapping(value ="/address", method = RequestMethod.POST)
+    public ResponseEntity<Object> createOrEditAddress(@RequestBody Address address, @CurrentUser MyUserPrincipal principal){
+
+        if(repository.getUserByUsername(principal.getUsername()).getAddress() == null){
+            repository.getUserByUsername(principal.getUsername()).setAddress(address);
+            addressRepository.save(address);
+        }
+        else{
+            Address updateAddress = repository.getUserByUsername(principal.getUsername()).getAddress();
+            updateAddress(address, updateAddress);
+
+            addressRepository.save(repository.getUserByUsername(principal.getUsername()).getAddress());
+        }
+
+        return new ResponseEntity<>("ok", HttpStatus.OK);
+
+    }
+
+    static void updateAddress(@RequestBody Address address, Address updateAddress) {
+        if(address.getAddressLine() != null){
+            updateAddress.setAddressLine(address.getAddressLine());
+        }
+        if(address.getState() != null){
+            updateAddress.setState(address.getState());
+        }
+        if(address.getTown() != null){
+            updateAddress.setTown(address.getTown());
+        }
+        if(address.getZipCode() != null){
+            updateAddress.setZipCode(address.getZipCode());
+        }
+    }
 
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
@@ -84,7 +118,6 @@ public class UserController {
         MyUserPrincipal myUserPrincipal = (MyUserPrincipal) authentication.getPrincipal();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         user = repository.getUserByUsername(user.getUsername());
     //clear context to log out
         return new ResponseEntity<Object>(user, HttpStatus.OK);
@@ -98,6 +131,21 @@ public class UserController {
         return new ResponseEntity<>(repository.findByRole(roleRepository.getRolesByRole(a)), HttpStatus.OK);
     }
 
+    @RequestMapping(value ="/currentUser", method = RequestMethod.GET)
+    public ResponseEntity<Object> getUser(@CurrentUser MyUserPrincipal principal){
+
+        if(principal != null) {
+            if (repository.findByUsername(principal.getUsername()).isPresent()) {
+                return new ResponseEntity<>(repository.getUserByUsername(principal.getUsername()), HttpStatus.OK);
+
+            } else {
+                User dummy = new User();
+                return new ResponseEntity<>(dummy, HttpStatus.OK);
+
+            }
+        }
+        return new ResponseEntity<>("not logged in", HttpStatus.OK);
+    }
 
 
 }

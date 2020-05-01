@@ -13,7 +13,7 @@ export default class DisplayItemsTool extends Component {
       name: "",
       description: "",
       price: "",
-      imageURL: ""
+      imageURL: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,30 +25,35 @@ export default class DisplayItemsTool extends Component {
       name: this.state.name,
       description: this.state.description,
       price: this.state.price,
-      imageURL: this.state.imageURL
+      imageURL: this.state.imageURL,
+      updater: false,
     };
 
     axios.put("/items", data);
     window.location.reload();
   }
 
-  handleChange(event) {
+  async handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
   async componentDidMount() {
-    await axios.get("/items").then(res => {
+    await axios.get("/items").then((res) => {
       const posts = res.data;
       this.setState({ posts });
     });
   }
 
-  deleteClick(e) {
+  async deleteClick(e) {
     const data = {
-      id: e
+      id: e,
     };
-    axios.put("/owner/restaurants/add", data);
+
+    await axios.put("/owner/restaurants/add", data);
+    history.replace("/owner/restaurants/add");
+
+    history.replace("/owner/restaurants/add/view");
   }
 
   render() {
@@ -61,7 +66,7 @@ export default class DisplayItemsTool extends Component {
               {postDetail.name} {postDetail.price}
               <img className="small-pic" src={postDetail.imageURL}></img>
               <button
-                onClick={e =>
+                onClick={(e) =>
                   this.setState({ isOpen: true, id: postDetail.id })
                 }
               >
@@ -75,7 +80,7 @@ export default class DisplayItemsTool extends Component {
               </button>
               <Dialog
                 isOpen={this.state.isOpen}
-                onClose={e => this.setState({ isOpen: false })}
+                onClose={(e) => this.setState({ isOpen: false })}
               >
                 <div className="label-div">name</div>
                 <div className="input-div">

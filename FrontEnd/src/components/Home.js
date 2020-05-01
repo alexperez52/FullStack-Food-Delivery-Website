@@ -48,30 +48,30 @@ export default class Home extends Component {
         });
 
         console.log(this.state.data)
-        const data = [
-            {
-                key: 'john',
-                value: 'John Doe',
-            },
-            {
-                key: 'jane',
-                value: 'Jane Doe',
-            },
-            {
-                key: 'mary',
-                value: 'Mary Phillips',
-            },
-            {
-                key: 'robert',
-                value: 'Robert',
-            },
-            {
-                key: 'karius',
-                value: 'Karius',
-            },
-        ]
+        // const data = [
+        //     {
+        //         key: 'john',
+        //         value: 'John Doe',
+        //     },
+        //     {
+        //         key: 'jane',
+        //         value: 'Jane Doe',
+        //     },
+        //     {
+        //         key: 'mary',
+        //         value: 'Mary Phillips',
+        //     },
+        //     {
+        //         key: 'robert',
+        //         value: 'Robert',
+        //     },
+        //     {
+        //         key: 'karius',
+        //         value: 'Karius',
+        //     },
+        // ]
 
-        console.log(data)
+        // console.log(data)
 
         // this.setState({ data })
 

@@ -12,13 +12,15 @@ export default class Header extends Component {
     super(props);
 
     this.state = {
-      currentUser: ""
+      currentUser: "",
     };
     this.clicked = this.clicked.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ currentUser: this.context.currentUser });
+  async componentDidMount() {
+    await axios.get("/currentUser").then((e) => {
+      this.setState({ currentUser: this.context.currentUser });
+    });
   }
 
   clicked() {

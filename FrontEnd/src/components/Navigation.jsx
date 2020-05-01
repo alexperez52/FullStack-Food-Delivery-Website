@@ -12,16 +12,26 @@ export default class Navigation extends Component {
     this.state = {
       isLoggedIn: false,
       currentUser: "",
-      userName: ""
+      userName: "",
     };
     this.onclick = this.onclick.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await axios.get("/currentUser").then((e) => {
+      const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
+
+      if (e.data.username != null) {
+        setUserName(e.data.username);
+        setCurrentUser(e.data.role.role);
+        setIsLoggedIn(true);
+      }
+      this.setState({ userName: this.context.username });
+    });
+
     this.setState({
       isLoggedIn: this.context.isLoggedIn,
       currentUser: this.context.role,
-      userName: this.context.username
     });
   }
 
@@ -30,8 +40,13 @@ export default class Navigation extends Component {
     setIsLoggedIn(false);
     setCurrentUser("");
     setUserName("");
-    axios.post("/logout5").then(response => {
+    axios.post("/logout5").then((response) => {
       history.replace("/");
+    });
+    this.setState({
+      isLoggedIn: this.context.isLoggedIn,
+      currentUser: this.context.role,
+      userName: this.context.username,
     });
   }
 

@@ -14,7 +14,6 @@ import CreateRestaurant from './components/auth/CreateRestaurantTool';
 import AddItems from "./components/auth/AddItemsTool";
 import OwnerPage from "./components/auth/OwnerPageTool";
 import RestaurantPage from './components/auth/RestaurantPage';
-import { UserProvider } from './components/auth/userContext';
 import axios from 'axios';
 
 
@@ -30,6 +29,13 @@ class App extends Component {
     };
   }
 
+  async componentDidMount() {
+
+    await axios.get("/currentUser").then(e => {
+      this.setState({ userName: e.data.username });
+
+    })
+  }
 
 
   render() {

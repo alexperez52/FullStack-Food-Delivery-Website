@@ -30,7 +30,7 @@ export default class RestaurantPage extends Component {
       receipt: false,
       responseData: [],
       priceData: "",
-      bill: ""
+      bill: "",
     };
     this.checkoutBtn = this.checkoutBtn.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
@@ -41,27 +41,27 @@ export default class RestaurantPage extends Component {
     await this.setState({
       id: this.props.location.pathname.substring(
         this.props.location.pathname.lastIndexOf("/") + 1
-      )
+      ),
     });
 
     await axios
       .post("/specificRestaurant", {
-        id: this.state.id
+        id: this.state.id,
       })
-      .then(response => {
+      .then((response) => {
         this.setState({
           restaurantName: response.data.restaurantName,
           imageURL: response.data.imageURL,
           ratings: response.data.ratings,
-          category: response.data.category
+          category: response.data.category,
         });
       });
 
     await axios
       .post("/restaurantItems", {
-        id: this.state.id
+        id: this.state.id,
       })
-      .then(response => {
+      .then((response) => {
         const posts = response.data;
         this.setState({ posts });
       });
@@ -74,7 +74,7 @@ export default class RestaurantPage extends Component {
       id: e.id,
       name: e.name,
       price: e.price,
-      quantity: 1
+      quantity: 1,
     };
 
     var flag = false;
@@ -108,7 +108,7 @@ export default class RestaurantPage extends Component {
       id: e.id,
       name: e.name,
       price: e.price,
-      quantity: 1
+      quantity: 1,
     };
 
     var flag = false;
@@ -160,13 +160,13 @@ export default class RestaurantPage extends Component {
       information: itemsDescription,
       date: todayDate,
       restaurant: {
-        id: this.state.id
-      }
+        id: this.state.id,
+      },
     };
 
     if (this.context.isLoggedIn) {
       if (floors.length > 0) {
-        axios.post("/invoice", data).then(response => {
+        axios.post("/invoice", data).then((response) => {
           console.log(response);
         });
         this.setState({
@@ -174,7 +174,7 @@ export default class RestaurantPage extends Component {
           receipt: true,
           responseData: floors,
           priceData: data,
-          checkout: []
+          checkout: [],
         });
       } else {
         this.setState({ noItems: true });
@@ -218,7 +218,7 @@ export default class RestaurantPage extends Component {
       <div>
         <Dialog
           isOpen={this.state.receipt}
-          onClose={e => this.setState({ receipt: false })}
+          onClose={(e) => this.setState({ receipt: false })}
         >
           <div className="full-receipt">
             <div className="receipt-titles">
@@ -262,8 +262,8 @@ export default class RestaurantPage extends Component {
 
             <div className="shipment-info"></div>
           </div>
-          <button onClick={e => this.showStatus()}> view status</button>
-          <button onClick={e => this.setState({ receipt: false })}>
+          <button onClick={(e) => this.showStatus()}> view status</button>
+          <button onClick={(e) => this.setState({ receipt: false })}>
             {" "}
             close
           </button>
@@ -271,7 +271,7 @@ export default class RestaurantPage extends Component {
 
         <Dialog
           isOpen={this.state.check}
-          onClose={e => this.setState({ check: false })}
+          onClose={(e) => this.setState({ check: false })}
         >
           <div>
             <img src={CreditCard} className="card-size"></img>
@@ -342,19 +342,19 @@ export default class RestaurantPage extends Component {
 
         <Dialog
           isOpen={this.state.noItems}
-          onClose={e => this.setState({ noItems: false })}
+          onClose={(e) => this.setState({ noItems: false })}
         >
           Shopping cart is Empty !
         </Dialog>
 
         <LoginTool
           isOpen={this.state.loginIsOpen}
-          onClose={e => this.setState({ loginIsOpen: false })}
+          onClose={(e) => this.setState({ loginIsOpen: false })}
         />
 
         <Dialog
           isOpen={this.state.isOpen}
-          onClose={e => this.setState({ isOpen: false })}
+          onClose={(e) => this.setState({ isOpen: false })}
         >
           <div>
             <div>
@@ -374,7 +374,7 @@ export default class RestaurantPage extends Component {
               </button>
               <button
                 className="alert-button-cancel"
-                onClick={e => this.setState({ isOpen: false })}
+                onClick={(e) => this.setState({ isOpen: false })}
               >
                 CANCEL
               </button>

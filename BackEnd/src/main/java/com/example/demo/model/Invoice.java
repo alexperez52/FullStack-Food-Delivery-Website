@@ -13,13 +13,12 @@ public class Invoice {
     @GeneratedValue
     @Column(name="invoice_id")
     private Long id;
-
+    private boolean isInProgress;
+    private boolean isComplete;
     private BigDecimal tax;
-
     private String time;
     private BigDecimal rawBill;
     private BigDecimal bill;
-
     private String information;
     private String date;
     @OneToOne(cascade = CascadeType.ALL)
@@ -29,6 +28,22 @@ public class Invoice {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="user_id", referencedColumnName = "user_id")
     private User user;
+
+    public boolean isInProgress() {
+        return isInProgress;
+    }
+
+    public void setInProgress(boolean inProgress) {
+        isInProgress = inProgress;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
+    }
 
     public User getUser() {
         return user;

@@ -11,14 +11,22 @@ export default class OwnerPageTool extends Component {
     super(props);
 
     this.state = {
-      stat: ""
+      stat: "",
+      posts: [],
     };
+    this.addClicked = this.addClicked.bind(this);
+    this.createClicked = this.createClicked.bind(this);
+    this.viewClicked = this.viewClicked.bind(this);
   }
 
-  componentDidMount() {
-    axios.get("/owner").then(response => {
+  async componentDidMount() {
+    axios.get("/owner").then((response) => {
       const res = response.data;
       this.setState({ stat: res });
+    });
+    await axios.get("/restaurants").then((res) => {
+      const posts = res.data;
+      this.setState({ posts });
     });
   }
   addClicked() {
@@ -43,8 +51,8 @@ export default class OwnerPageTool extends Component {
             <label>Create Restaurant</label>
           )}
         </button>
-        <button onClick={this.addClicked}>add items</button>
-        <button onClick={this.viewClicked}>view items</button>
+        <button onClick={(e) => this.addClicked()}>add items</button>
+        <button onClick={(e) => this.viewClicked()}>view items</button>
 
         <hr></hr>
         <Route

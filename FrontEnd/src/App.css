@@ -576,8 +576,6 @@
   line-height: 200%;
 }
 
-.dim {
-}
 
 .grey {
   top: 0;
@@ -869,7 +867,7 @@
   max-height: 2.5rem;
   color: white;
   background-color: rgb(193, 72, 72);
-  border-color: tomato;
+  border-color: black;
 }
 .search-size {
   display: flex;

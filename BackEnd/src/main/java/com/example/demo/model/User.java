@@ -1,13 +1,7 @@
 package com.example.demo.model;
 
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
 
 @Entity
 @Table (name="users")
@@ -28,6 +22,18 @@ public class User {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "role_id", referencedColumnName = "role_id")
     private Roles role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id" , referencedColumnName = "address_id")
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;

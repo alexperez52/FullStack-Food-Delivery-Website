@@ -1,13 +1,11 @@
-package com.example.demo.model;
+package com.example.demo.controller;
 
-import org.apache.coyote.Response;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -24,6 +22,29 @@ public class RestaurantController {
 
     @Autowired
     InvoiceRepository invoiceRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
+
+
+    @RequestMapping(value ="/restaurantAddress", method = RequestMethod.POST)
+    public ResponseEntity<Object> createOrEditAddress(@RequestBody Address address, @CurrentUser MyUserPrincipal principal) {
+        if(address != null) {
+            if (userRepository.getUserByUsername(principal.getUsername()).getRestaurant().getAddress() == null) {
+                userRepository.getUserByUsername(principal.getUsername()).getRestaurant().setAddress(address);
+                addressRepository.save(address);
+            } else {
+                Address updateAddress = userRepository.getUserByUsername(principal.getUsername()).getRestaurant().getAddress();
+
+                UserController.updateAddress(address, updateAddress);
+                addressRepository.save(updateAddress);
+            }
+        }
+
+        return new ResponseEntity<>("ok", HttpStatus.OK);
+
+    }
+
 
     @RequestMapping(value = "/owner", method = RequestMethod.GET)
     public boolean hasRestaurant(@CurrentUser MyUserPrincipal principal){

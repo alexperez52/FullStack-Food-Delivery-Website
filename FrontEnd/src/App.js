@@ -18,7 +18,7 @@ import axios from 'axios';
 import HoverHeader from './components/auth/HoverHeader.js';
 import HoverHead from './components/auth/HoverHead';
 import Account from './components/auth/Account';
-
+import Analytics from "./components/auth/Analytics.jsx"
 
 
 
@@ -59,6 +59,7 @@ class App extends Component {
             <Header />
           </Headroom>
           <Switch>
+            <Route path="/analytics" component={Analytics} />
             <Route path="/account" component={Account} />
             <Route path="/push" component={HoverHead} />
             <Route path="/restaurant/*" component={RestaurantPage} />

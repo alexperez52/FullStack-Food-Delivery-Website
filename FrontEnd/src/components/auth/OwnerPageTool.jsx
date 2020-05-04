@@ -15,7 +15,7 @@ export default class OwnerPageTool extends Component {
     super(props);
 
     this.state = {
-      stat: "",
+      stat: false,
       posts: [],
     };
     this.addClicked = this.addClicked.bind(this);
@@ -38,6 +38,7 @@ export default class OwnerPageTool extends Component {
   }
 
   createClicked() {
+    this.setState({ stat: true });
     history.replace("/owner/restaurants");
   }
 

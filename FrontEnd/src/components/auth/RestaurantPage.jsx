@@ -151,7 +151,8 @@ export default class RestaurantPage extends Component {
 
     for (var i = 0; i < floors.length; i++) {
       totalCost += floors[i].quantity * floors[i].price;
-      itemsDescription += floors[i].name + ":";
+      itemsDescription +=
+        "Item: " + floors[i].name + " Quantity: " + floors[i].quantity + " | ";
     }
 
     var tax = totalCost * 0.0865;

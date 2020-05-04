@@ -170,4 +170,12 @@ public class RestaurantController {
 
     }
 
+    @RequestMapping(value="/specificInvoices", method = RequestMethod.GET)
+    public ResponseEntity<Object> getInvoices(@CurrentUser MyUserPrincipal principal){
+        User user = userRepository.findByUsername(principal.getUsername()).get();
+
+
+        return new ResponseEntity<>(invoiceRepository.findAllByRestaurant(user.getRestaurant()), HttpStatus.OK);
+    }
+
 }

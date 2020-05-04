@@ -74,7 +74,7 @@ export default class Navigation extends Component {
                 </button>
                 <div className="dropdown-content">
                   <Link to="/account">My Account</Link>
-                  <Link to="/status">Analytics</Link>
+                  <Link to="/analytics">Analytics</Link>
                   <Link to="/owner/restaurants">Restaurant Page</Link>
                 </div>
               </div>
@@ -100,7 +100,7 @@ export default class Navigation extends Component {
                 <div class="dropdown-content">
                   <Link to="/account">My Account</Link>
                   <Link to="/orders">Find Orders</Link>
-                  <Link to="/status">Analytics</Link>
+                  <Link to="/analytics">Analytics</Link>
                 </div>
               </div>
             )}

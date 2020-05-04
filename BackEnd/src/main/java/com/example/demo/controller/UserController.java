@@ -34,7 +34,23 @@ public class UserController {
     @Autowired
     AddressRepository addressRepository;
 
+    @RequestMapping(value= "/updateUser", method = RequestMethod.POST)
+    public ResponseEntity<Object> editUser(@RequestBody User user, @CurrentUser MyUserPrincipal principal){
 
+        User updatedUser = repository.findByUsername(principal.getUsername()).get();
+        updatedUser.setFirstName(user.getFirstName());
+        updatedUser.setLastName(user.getLastName());
+        updatedUser.setUsername(user.getUsername());
+        updatedUser.setEmail(user.getEmail());
+
+        if(user.getPassword() != null) {
+            updatedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        repository.save(updatedUser);
+
+
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 
     @RequestMapping(value ="/address", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrEditAddress(@RequestBody Address address, @CurrentUser MyUserPrincipal principal){

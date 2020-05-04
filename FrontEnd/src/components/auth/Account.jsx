@@ -22,10 +22,12 @@ export default class Account extends Component {
       email: "",
       firstName: "",
       lastName: "",
+      password: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.editAddress = this.editAddress.bind(this);
     this.submitAddress = this.submitAddress.bind(this);
+    this.submitInfo = this.submitInfo.bind(this);
   }
 
   handleChange(event) {
@@ -46,6 +48,29 @@ export default class Account extends Component {
       } catch (e) {
         console.log("error");
       }
+    });
+  }
+
+  async submitInfo() {
+    const data = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    await axios.post("/updateUser", data).then((e) => {
+      console.log(e);
+      const loginInfo = {
+        username: data.username,
+        password: data.password,
+      };
+
+      axios.post("/login", loginInfo).then((e) => {
+        console.log(e);
+        window.location.reload();
+      });
     });
   }
 
@@ -86,9 +111,78 @@ export default class Account extends Component {
             <div className="account-label push-down">{this.state.email}</div>
             <div className="account-label push-down">
               <button className="account-btn" onClick={this.editAddress}>
-                Update Address
+                Update Info
               </button>
             </div>
+          </div>
+        </div>
+
+        <div className="div-cards">
+          <div>
+            <h2 className="align-account-text">User settings</h2>
+          </div>
+          <input
+            className="input-div"
+            type="firstName"
+            name="firstName"
+            placeholder="First Name"
+            value={this.state.firstName}
+            onChange={this.handleChange}
+            required
+            disabled={this.state.addressDisabled}
+          ></input>
+
+          <input
+            className="input-div"
+            type="lastName"
+            name="lastName"
+            placeholder="Last Name"
+            value={this.state.lastName}
+            onChange={this.handleChange}
+            required
+            disabled={this.state.addressDisabled}
+          ></input>
+
+          <input
+            className="input-div"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            required
+            disabled={this.state.addressDisabled}
+          ></input>
+
+          <input
+            className="input-div"
+            type="username"
+            name="username"
+            placeholder="Username"
+            value={this.state.username}
+            onChange={this.handleChange}
+            required
+            disabled={this.state.addressDisabled}
+          ></input>
+          <input
+            className="input-div"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handleChange}
+            required
+            disabled={this.state.addressDisabled}
+          ></input>
+
+          <div className="account-label">
+            <button
+              disabled={this.state.addressDisabled}
+              className="account-btn"
+              onClick={this.submitInfo}
+            >
+              Submit
+            </button>
           </div>
         </div>
 

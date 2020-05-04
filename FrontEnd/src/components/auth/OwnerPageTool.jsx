@@ -5,8 +5,12 @@ import { Link, Route } from "react-router-dom";
 import CreateRestaurantTool from "./CreateRestaurantTool";
 import AddItemsTool from "./AddItemsTool";
 import DisplayItemsTool from "./DisplayItemsTool";
+import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import { Redirect } from "react-router-dom";
 
 export default class OwnerPageTool extends Component {
+  static contextType = GlobalContext;
+
   constructor(props) {
     super(props);
 
@@ -44,27 +48,27 @@ export default class OwnerPageTool extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.createClicked}>
-          {this.state.stat ? (
-            <label>Edit Restaurant</label>
-          ) : (
-            <label>Create Restaurant</label>
-          )}
-        </button>
-        <button onClick={(e) => this.addClicked()}>add items</button>
-        <button onClick={(e) => this.viewClicked()}>view items</button>
-
-        <hr></hr>
+        <div className="dark enlarge button-bar">
+          <button onClick={this.createClicked} className="owner-btn">
+            {this.state.stat ? (
+              <label>Edit Restaurant</label>
+            ) : (
+              <label>Create Restaurant</label>
+            )}
+          </button>
+          <button onClick={(e) => this.addClicked()} className="owner-btn">
+            add items
+          </button>
+          <button onClick={(e) => this.viewClicked()} className="owner-btn">
+            view items
+          </button>
+        </div>
         <Route
           exact
           path="/owner/restaurants"
           component={CreateRestaurantTool}
         />
-
         <Route path="/owner/restaurants/add" component={AddItemsTool} />
-
-        <hr />
-
         <Route
           exact
           path="/owner/restaurants/add/view"

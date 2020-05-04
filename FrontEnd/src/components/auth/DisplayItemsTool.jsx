@@ -58,14 +58,15 @@ export default class DisplayItemsTool extends Component {
 
   render() {
     return (
-      <div className="item-gap">
+      <div className="item-wrap">
         {this.state.posts.map((postDetail, index) => {
           return (
-            <div className="App_Card" key={postDetail.id}>
+            <div className="card" key={postDetail.id}>
               {" "}
-              {postDetail.name} {postDetail.price}
-              <img className="small-pic" src={postDetail.imageURL}></img>
+              <label className="edit-label">{postDetail.name}</label>
+              <img className="small-pic-card" src={postDetail.imageURL}></img>
               <button
+                className="edit"
                 onClick={(e) =>
                   this.setState({ isOpen: true, id: postDetail.id })
                 }
@@ -73,6 +74,7 @@ export default class DisplayItemsTool extends Component {
                 Edit Item
               </button>
               <button
+                className="delete"
                 key={postDetail.id}
                 onClick={() => this.deleteClick(postDetail.id)}
               >

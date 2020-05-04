@@ -35,10 +35,11 @@ public class UserController {
     AddressRepository addressRepository;
 
 
+
     @RequestMapping(value ="/address", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrEditAddress(@RequestBody Address address, @CurrentUser MyUserPrincipal principal){
 
-        if(repository.getUserByUsername(principal.getUsername()).getAddress() == null){
+        if(repository.getUserByUsername(principal.getUsername()).getAddress() ==null){
             repository.getUserByUsername(principal.getUsername()).setAddress(address);
             addressRepository.save(address);
         }
@@ -136,6 +137,7 @@ public class UserController {
 
         if(principal != null) {
             if (repository.findByUsername(principal.getUsername()).isPresent()) {
+
                 return new ResponseEntity<>(repository.getUserByUsername(principal.getUsername()), HttpStatus.OK);
 
             } else {

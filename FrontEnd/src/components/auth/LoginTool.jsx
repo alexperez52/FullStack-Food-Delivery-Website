@@ -12,7 +12,7 @@ export default class LoginTool extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +20,7 @@ export default class LoginTool extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -28,35 +28,32 @@ export default class LoginTool extends Component {
     event.preventDefault();
     const data = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
     };
     const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
 
     axios
       .post("/login ", data)
-      .then(response => {
+      .then((response) => {
         if (response.statusText === "OK" && response.data.username != "") {
           if (response.data.role.role === "OWNER") {
             setCurrentUser("OWNER");
             setIsLoggedIn(true);
-
-            history.replace("/owner");
           } else if (response.data.role.role === "CUSTOMER") {
             setCurrentUser("CUSTOMER");
             setIsLoggedIn(true);
-            history.replace("/");
           } else if (response.data.role.role === "DRIVER") {
             setCurrentUser("DRIVER");
             setIsLoggedIn(true);
-            history.replace("/");
           }
+          history.replace("/");
           setUserName(this.state.username);
         } else {
           history.push("/LoginFail");
         }
         console.log(response);
       })
-      .catch(error => history.push("/LoginFail"));
+      .catch((error) => history.push("/LoginFail"));
   }
 
   render() {
@@ -70,7 +67,7 @@ export default class LoginTool extends Component {
                   <label>Sign In</label>
                 </div>
                 <div className="label-div">Username</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="input-input"
                     type="username"
@@ -82,7 +79,7 @@ export default class LoginTool extends Component {
               </div>
               <div className="content-container-div">
                 <div className="label-div">Password</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="input-input"
                     type="password"

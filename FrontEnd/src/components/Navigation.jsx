@@ -68,10 +68,43 @@ export default class Navigation extends Component {
             )}
 
             {this.context.currentUser === "OWNER" && (
-              <Link to="/login" className="PageSwitcher__Item Page_item">
-                Welcome {this.context.username}
-              </Link>
+              <div className="dropdown">
+                <button className="PageSwitcher__Item dropbtnowner">
+                  Welcome {this.context.username}
+                </button>
+                <div className="dropdown-content">
+                  <Link to="/account">My Account</Link>
+                  <Link to="/status">Analytics</Link>
+                  <Link to="/owner/restaurants">Restaurant Page</Link>
+                </div>
+              </div>
             )}
+
+            {this.context.currentUser === "CUSTOMER" && (
+              <div className="dropdown">
+                <button className="PageSwitcher__Item dropbtn">
+                  Welcome {this.context.username}
+                </button>
+                <div className="dropdown-content">
+                  <Link to="/account">My account</Link>
+                  <Link to="/status">Active Orders</Link>
+                </div>
+              </div>
+            )}
+
+            {this.context.currentUser === "DRIVER" && (
+              <div className="dropdown">
+                <button className="PageSwitcher__Item dropbtndriver">
+                  Welcome {this.context.username}
+                </button>
+                <div class="dropdown-content">
+                  <Link to="/account">My Account</Link>
+                  <Link to="/orders">Find Orders</Link>
+                  <Link to="/status">Analytics</Link>
+                </div>
+              </div>
+            )}
+
             {this.context.isLoggedIn && (
               <button onClick={this.onclick} className="PageSwitcher__Item">
                 Logout{this.state.role}

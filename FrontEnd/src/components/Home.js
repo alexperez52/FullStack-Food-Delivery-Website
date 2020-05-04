@@ -50,6 +50,10 @@ export default class Home extends Component {
         }, 1000);
     }
 
+    register() {
+        history.replace("/registration")
+    }
+
     render() {
         return (
             <div>
@@ -63,7 +67,7 @@ export default class Home extends Component {
                         </hr>
                         <p className="header-par">Sign up as an Owner to put your restaurant out there or sign up as a Customer to order from your favorite restaurants or simply sign up as a driver to fullfil people's orders while getting paid! </p>
 
-                        <button className="header-btn"> Get started</button>
+                        <button className="header-btn" onClick={e => this.register()}> Get started</button>
 
 
                         <div className="text-wrapper">

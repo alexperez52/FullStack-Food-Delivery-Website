@@ -104,6 +104,7 @@ public class RestaurantController {
 
         if(userRepository.findById(principal.getId()).isPresent()){
 
+
             item.setRestaurant(userRepository.findById(principal.getId()).get().getRestaurant());
         }
         itemRepository.save(item);
@@ -165,7 +166,7 @@ public class RestaurantController {
         invoice.setUser(user);
         invoice.setRestaurant(foundRestaurant);
         invoiceRepository.save(invoice);
-        return new ResponseEntity<>("Invoice created", HttpStatus.OK);
+        return new ResponseEntity<>(invoice, HttpStatus.OK);
 
     }
 

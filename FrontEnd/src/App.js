@@ -15,6 +15,9 @@ import AddItems from "./components/auth/AddItemsTool";
 import OwnerPage from "./components/auth/OwnerPageTool";
 import RestaurantPage from './components/auth/RestaurantPage';
 import axios from 'axios';
+import HoverHeader from './components/auth/HoverHeader.js';
+import HoverHead from './components/auth/HoverHead';
+import Account from './components/auth/Account';
 
 
 
@@ -47,12 +50,17 @@ class App extends Component {
 
     return (
 
+
       <div>
+
+
         <Router history={history}>
           <Headroom>
             <Header />
           </Headroom>
           <Switch>
+            <Route path="/account" component={Account} />
+            <Route path="/push" component={HoverHead} />
             <Route path="/restaurant/*" component={RestaurantPage} />
             <Route path="/owner" component={OwnerPage} />
 

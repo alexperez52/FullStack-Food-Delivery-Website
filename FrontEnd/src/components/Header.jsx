@@ -25,6 +25,7 @@ export default class Header extends Component {
 
   clicked() {
     const { setCurrentUser } = this.context;
+    // history.push("/");
     history.push("/");
   }
 

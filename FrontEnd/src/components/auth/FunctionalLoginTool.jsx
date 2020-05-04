@@ -23,7 +23,7 @@ export default class FunctionalLoginTool extends Component {
       username: "",
       password: "",
       email: "",
-      role: ""
+      role: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -32,7 +32,7 @@ export default class FunctionalLoginTool extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -45,11 +45,11 @@ export default class FunctionalLoginTool extends Component {
       password: this.state.password,
       email: this.state.email,
       role: {
-        role: this.state.role
-      }
+        role: this.state.role,
+      },
     };
 
-    axios.post("/users", data).then(function(body) {
+    axios.post("/users", data).then(function (body) {
       console.log(body);
       console.log(data);
     });
@@ -61,13 +61,13 @@ export default class FunctionalLoginTool extends Component {
     event.preventDefault();
     const data = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
     };
     const { setIsLoggedIn, setCurrentUser, setUserName } = this.context;
 
     axios
       .post("/login ", data)
-      .then(response => {
+      .then((response) => {
         if (response.statusText === "OK" && response.data.username != "") {
           if (response.data.role.role === "OWNER") {
             setCurrentUser("OWNER");
@@ -86,7 +86,7 @@ export default class FunctionalLoginTool extends Component {
         }
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         alert("lol");
       });
@@ -112,7 +112,7 @@ export default class FunctionalLoginTool extends Component {
             <div className="horizontal-align">
               <div>
                 <div className="label-div-name">First Name</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="name-input"
                     type="firstName"
@@ -125,7 +125,7 @@ export default class FunctionalLoginTool extends Component {
 
               <div>
                 <div className="label-div-name">Last Name</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="name-input"
                     type="lastName"
@@ -139,7 +139,7 @@ export default class FunctionalLoginTool extends Component {
           </div>
 
           <div className="label-div">Username</div>
-          <div className="input-div">
+          <div>
             <input
               className="input-input"
               type="username"
@@ -149,7 +149,7 @@ export default class FunctionalLoginTool extends Component {
             ></input>
           </div>
           <div className="label-div">Email</div>
-          <div className="input-div">
+          <div>
             <input
               className="input-input"
               type="email"
@@ -160,7 +160,7 @@ export default class FunctionalLoginTool extends Component {
           </div>
           <div className="content-container-div">
             <div className="label-div">Password</div>
-            <div className="input-div">
+            <div>
               <input
                 className="input-input"
                 type="password"
@@ -216,7 +216,9 @@ export default class FunctionalLoginTool extends Component {
             Already have an account?{" "}
             <a
               className="register-label"
-              onClick={e => this.setState({ isRegister: false, isOpen: true })}
+              onClick={(e) =>
+                this.setState({ isRegister: false, isOpen: true })
+              }
             >
               Login
             </a>
@@ -239,7 +241,7 @@ export default class FunctionalLoginTool extends Component {
                 <label>Sign In</label>
               </div>
               <div className="label-div">Username</div>
-              <div className="input-div">
+              <div>
                 <input
                   className="input-input"
                   type="username"
@@ -251,7 +253,7 @@ export default class FunctionalLoginTool extends Component {
             </div>
             <div className="content-container-div">
               <div className="label-div">Password</div>
-              <div className="input-div">
+              <div>
                 <input
                   className="input-input"
                   type="password"
@@ -273,7 +275,7 @@ export default class FunctionalLoginTool extends Component {
             Don't have an account?{" "}
             <a
               className="register-label"
-              onClick={e => this.setState({ isRegister: true, isOpen: true })}
+              onClick={(e) => this.setState({ isRegister: true, isOpen: true })}
             >
               Register
             </a>

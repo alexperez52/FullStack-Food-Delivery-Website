@@ -31,6 +31,11 @@ export default class RestaurantPage extends Component {
       responseData: [],
       priceData: "",
       bill: "",
+      addressLine: "",
+      town: "",
+      zipCode: "",
+      state: "",
+      invoiceId: "",
     };
     this.checkoutBtn = this.checkoutBtn.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
@@ -54,6 +59,10 @@ export default class RestaurantPage extends Component {
           imageURL: response.data.imageURL,
           ratings: response.data.ratings,
           category: response.data.category,
+          address: response.data.address.addressLine,
+          town: response.data.address.town,
+          zipCode: response.data.address.zipCode,
+          state: response.data.address.state,
         });
       });
 
@@ -108,7 +117,9 @@ export default class RestaurantPage extends Component {
       id: e.id,
       name: e.name,
       price: e.price,
+      description: e.description,
       quantity: 1,
+      imageURL: e.imageURL,
     };
 
     var flag = false;
@@ -168,6 +179,7 @@ export default class RestaurantPage extends Component {
       if (floors.length > 0) {
         axios.post("/invoice", data).then((response) => {
           console.log(response);
+          this.setState({ invoiceId: response.data.id });
         });
         this.setState({
           check: false,
@@ -206,7 +218,8 @@ export default class RestaurantPage extends Component {
     }
   }
 
-  showStatus() {
+  showStatus(e) {
+    console.log(e);
     history.replace("/status");
   }
 
@@ -222,26 +235,53 @@ export default class RestaurantPage extends Component {
         >
           <div className="full-receipt">
             <div className="receipt-titles">
-              <label>Name</label>
-              <label>Quantity</label>
-              <label>Price</label>
+              <h2>Name</h2>
+              <h2>Quantity</h2>
+              <h2>Price</h2>
             </div>
-
-            <div className="receipt-items">
-              {this.state.responseData.map((postDetail, index) => {
-                return (
-                  <div key={index}>
+            <div className="ale">
+              <div className="receipt-items">
+                {this.state.responseData.map((postDetail, index) => {
+                  return (
                     <div className="receipt-titles">
-                      <div>{postDetail.name}</div>
-                      <div>{postDetail.quantity}</div>
-                      <div>{postDetail.price} </div>
+                      <div key={index}>
+                        <div>
+                          <h3>{postDetail.name}</h3>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+              <div className="receipt-items">
+                {this.state.responseData.map((postDetail, index) => {
+                  return (
+                    <div className="receipt-titles">
+                      <div key={index}>
+                        <div>
+                          <h3>{postDetail.quantity}</h3>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="receipt-items">
+                {this.state.responseData.map((postDetail, index) => {
+                  return (
+                    <div className="receipt-titles">
+                      <div key={index}>
+                        <div>
+                          <h3>{postDetail.price}</h3>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="receipt-price">
+            <div className="receipt-titles">
               <div>
                 <div>
                   <label>Tax: </label>
@@ -252,9 +292,8 @@ export default class RestaurantPage extends Component {
               </div>
               <div>
                 <div>
-                  <label>Total: </label>
                   <label>
-                    {Math.round(this.state.priceData.bill * 100) / 100}
+                    Total: {Math.round(this.state.priceData.bill * 100) / 100}
                   </label>
                 </div>
               </div>
@@ -262,7 +301,10 @@ export default class RestaurantPage extends Component {
 
             <div className="shipment-info"></div>
           </div>
-          <button onClick={(e) => this.showStatus()}> view status</button>
+          <button onClick={(e) => this.showStatus(this.state.invoiceId)}>
+            {" "}
+            View status
+          </button>
           <button onClick={(e) => this.setState({ receipt: false })}>
             {" "}
             close
@@ -290,7 +332,7 @@ export default class RestaurantPage extends Component {
                 <label>CV-Code</label>
               </div>
               <div className="t">
-                <div className="input-div">
+                <div>
                   <input className="name-input"></input>{" "}
                   <input className="name-input"></input>
                 </div>
@@ -311,7 +353,7 @@ export default class RestaurantPage extends Component {
                     <label>Town</label>
                   </div>
                   <div className="t">
-                    <div className="input-div">
+                    <div>
                       <input className="name-input"></input>{" "}
                       <input className="name-input"></input>
                     </div>
@@ -323,7 +365,7 @@ export default class RestaurantPage extends Component {
                   <label>State</label>
                 </div>
                 <div className="t">
-                  <div className="input-div">
+                  <div>
                     <input className="name-input"></input>{" "}
                     <input className="name-input"></input>
                   </div>
@@ -334,7 +376,12 @@ export default class RestaurantPage extends Component {
                 <button className="alert-button" onClick={this.checkoutBtn}>
                   Pay {this.state.bill}
                 </button>
-                <button className="alert-button-cancel">cancel</button>
+                <button
+                  className="alert-button-cancel"
+                  onClick={(e) => this.setState({ check: false })}
+                >
+                  cancel
+                </button>
               </div>
             </form>
           </div>
@@ -389,31 +436,33 @@ export default class RestaurantPage extends Component {
               </div>
               <div className="info-card">
                 <div className="info-labels">
-                  <h1>{this.state.restaurantName}</h1>
-                  <h2>{this.state.category}</h2>
-                  <h2>{this.state.ratings}</h2>
+                  <h1 className="info-h1">{this.state.restaurantName}</h1>
+                  <h3 className="info-h2">Category: {this.state.category} </h3>
+                  <h3>
+                    Location: {this.state.address} {this.state.town}{" "}
+                    {this.state.state} {this.state.zipCode}
+                  </h3>
+                  <h3>Ratings: {this.state.ratings} / 5.0</h3>
                 </div>
               </div>
             </div>
           </div>
           <div className="cart-div">
-            <h3 className="cart-label">Cart</h3>
+            <h2 className="cart-label">Shopping Cart</h2>
             <div className="shop-container">
               <div>
                 {this.state.checkout.map((postDetail, index) => {
                   return (
                     <div key={index} className="check-item">
-                      <div key={postDetail} className="items-gap">
+                      <div key={postDetail} className="items-gap-cart">
                         <div>
-                          <div className="restaurant-label">
-                            {" "}
+                          <div className="restaurant-label-cart">
                             {postDetail.name}
                           </div>
-                          <div className="description-label">
-                            Description: {postDetail.description}
-                          </div>
+
                           <div>Quantity: {postDetail.quantity}</div>
-                          <div>ID: {postDetail.id}</div>
+                          <div>Price: {postDetail.price}</div>
+                          <div>Description: {postDetail.description}</div>
                           <div>
                             <button onClick={() => this.itemClick(postDetail)}>
                               +
@@ -421,6 +470,12 @@ export default class RestaurantPage extends Component {
                             <button onClick={() => this.itemMinus(postDetail)}>
                               -
                             </button>
+                          </div>
+                          <div>
+                            <img
+                              src={postDetail.imageURL}
+                              className="checkout-img"
+                            ></img>
                           </div>
                         </div>
                       </div>
@@ -438,12 +493,16 @@ export default class RestaurantPage extends Component {
           <hr></hr>
         </div>
         <div>
+          <h1 className="menu-items-h1">Menu Items</h1>
           <div className="item-wrap">
             {this.state.posts.map((postDetail, index) => {
               return (
                 <div key={postDetail.id}>
                   <div key={postDetail} className="items-gap">
-                    <img className="small-pic" src={postDetail.imageURL}></img>
+                    <img
+                      className="small-pic-card"
+                      src={postDetail.imageURL}
+                    ></img>
                     <div>
                       <div className="restaurant-label"> {postDetail.name}</div>
                       <div className="description-label">
@@ -452,12 +511,13 @@ export default class RestaurantPage extends Component {
                       <div className="description-label">
                         Price: {postDetail.price}
                       </div>
-                      <div>
-                        <button onClick={() => this.itemClick(postDetail)}>
-                          Add to cart
-                        </button>
-                      </div>
                     </div>
+                    <button
+                      className="addcard-btn"
+                      onClick={() => this.itemClick(postDetail)}
+                    >
+                      Add to cart
+                    </button>
                   </div>
                 </div>
               );

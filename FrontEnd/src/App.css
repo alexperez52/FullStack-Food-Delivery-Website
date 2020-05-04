@@ -138,6 +138,17 @@
   text-align: left;
 }
 
+.input-div {
+  width: 15rem;
+  height: 2.3rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  margin-left: 10rem;
+}
+
+
+
 .input-textfield1 {
   background-attachment: scroll;
   background-clip: border-box;
@@ -500,6 +511,29 @@
   font-size: 20px;
 }
 
+.resize {
+  height: 3rem;
+  width: 3rem;
+  margin-top: 1.1rem;
+}
+
+.add-item-align {
+  display: flex;
+  justify-content: center;
+  background-color: grey;
+  column-gap: 1rem;
+}
+
+.submit {
+  margin-top: 5%;
+  padding: 10px 100px;
+  background-color: #f26226;
+  border: 2px solid #f26226;
+  border-radius: 38px;
+  font-size: 20px;
+  color: white;
+}
+
 .content-container-div {
   margin-bottom: 7px;
   margin-top: 7px;
@@ -621,39 +655,128 @@
   padding-left: 7px;
 }
 
+.edit-label {
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: left;
+  text-align: center;
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
+  background-color: grey;
+}
+
+.restaurant-label-cart {
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: left;
+  text-align: left;
+
+}
+
 .horiz-align {
   display: flex;
 }
 
 .check-item {
   width: inherit;
-  background-color: red;
+  background-color: wheat;
   border-color: black;
-  border-style: ridge;
+  border-style: groove;
   border-width: thin;
+  max-height: 7rem;
+  min-height: 7rem;
 }
 
 .shop-container {
   margin-top: 2.5rem;
   background-color: whitesmoke;
-  height: 32rem;
+  height: 31rem;
   overflow-y: auto;
 }
 
 .cart-label {
   margin-top: 30%;
+  margin-left: 5rem;
+  color: brown;
+  font-weight: bolder;
+}
+
+.info-m {
+  margin-top: -5rem;
+  margin-left: 20rem;
+  padding-left: 30rem;
 }
 
 .cart-div {
-  border-color: black;
-  border-style: solid;
+  border-color: rgb(171, 170, 170);
+  border-style: groove;
   border-width: thin;
   margin-top: -6%;
   height: 50rem;
   width: 20rem;
   margin-left: 79%;
-  background-color: rgb(200, 200, 200);
+  background-color: beige;
   position: fixed;
+}
+
+.rest-edit {
+  margin-left: 21rem;
+}
+
+.wi {
+  width: 17.5rem;
+}
+
+.dark {
+  background-color: white;
+}
+
+.enlarge {
+  padding-bottom: 0.1rem;
+  padding-top: 0.1rem;
+}
+
+.button-bar {
+  border-top: black;
+  border-top-style: solid;
+  display: flex;
+  padding-left: 2rem;
+  column-gap: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  background-color: #323135;
+}
+
+.owner-btn:hover {
+  background-color: #d6624e;
+
+}
+
+.owner-btn {
+  background-color: #f26226;
+  border: none;
+  color: white;
+  width: 13rem;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.cart-div-reg {
+  border-color: #323135;
+  border-style: groove;
+  border-width: thin;
+  margin-top: -51.6%;
+  height: 40rem;
+  width: 23rem;
+  padding-left: 4rem;
+  padding-top: 1rem;
+  background-color: #323135;
+  position: absolute;
+  color: white;
+  font-weight: bold;
 }
 
 .rest-header {
@@ -662,17 +785,27 @@
   background-color: rgb(255, 255, 255);
 }
 
+.rest-he {
+  height: 29.5rem;
+  width: 100rem;
+}
+
 .info-labels {
-  margin-left: 10%;
+  margin-left: 7%;
 }
 
 .info-card {
   width: 100%;
   height: 18rem;
-  margin-top: 5.3rem;
+  margin-top: 5rem;
   margin-left: -9%;
   background-color: whitesmoke;
   box-shadow: 0 32px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.large-al {
+  margin-top: -10rem;
+  margin-left: 20rem;
 }
 
 .large-pic {
@@ -690,17 +823,47 @@
   border-radius: 3%;
 }
 
+.small-pic-card {
+  height: 195px;
+  width: 340px;
+}
+
 .item-wrap {
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
   width: 80rem;
-  background-color: white;
+
+}
+
+.checkout-img {
+  height: 5rem;
+  width: 6.5rem;
+  margin-left: 10rem;
+  margin-top: -20em;
+  margin-bottom: 1.5em;
+  position: relative;
 }
 
 .items-gap {
+
+  max-width: 26rem;
+  max-height: 13rem;
+  min-width: 13rem;
+  min-height: 13rem;
   margin-left: 2rem;
-  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  padding-bottom: 4rem;
+  background-color: beige;
+}
+
+.items-gap-cart {
+
+  min-height: 16;
+  max-height: 16rem;
+  margin-left: 2rem;
+  padding-bottom: 1rem;
+
 }
 
 .wrap-gap {
@@ -832,6 +995,36 @@
   margin-left: 30rem;
   padding-bottom: 5%;
   margin-bottom: 1%;
+}
+
+.edit {
+  background-color: teal;
+  height: 3rem;
+  color: white;
+}
+
+.delete {
+  background-color: rgb(228, 87, 87);
+  height: 3rem;
+  color: white;
+}
+
+.card {
+  background-color: wheat;
+  border-top-style: none;
+  border-top-width: 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  width: 21.26rem;
+  height: 20rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  background-color: beige;
 }
 
 .App_Card {
@@ -1048,8 +1241,10 @@ code {
 .checkout-button {
   width: inherit;
   height: 5rem;
-  background-color: black;
+  background-color: rgb(152, 65, 38);
   color: white;
+
+
 }
 
 .PageSwitcher {
@@ -1173,6 +1368,10 @@ code {
   top: 1.5px;
 }
 
+.menu-items-h1 {
+  margin-left: 3rem;
+}
+
 .FormField__TermsLink {
   color: white;
   border-bottom: 1px solid #199087;
@@ -1184,7 +1383,12 @@ code {
 
 .receipt-titles {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.ale {
+  display: flex;
+  justify-content: space-between;
 }
 
 .receipt-price {
@@ -1330,4 +1534,163 @@ code {
 .s-r {
   color: darkolivegreen;
   margin-left: -0.5rem;
+}
+
+.fff {
+  display: flex;
+  max-width: 100vmax;
+}
+
+.info-h1 {
+  font-family: UberMove-Medium, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  padding-bottom: 0.5em;
+}
+
+.info-h2 {
+  font-family: UberMove-Medium, sans-serif;
+}
+
+.addcard-btn {
+  width: 7rem;
+  height: 3rem;
+  background-color: #f26226;
+  border-radius: 0.5rem;
+  border: ivory;
+  color: white;
+  font-family: "Cera Pro", "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
+  margin-left: 13.5rem;
+  margin-top: -2.3rem;
+  position: absolute;
+}
+
+
+
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+}
+
+.dropbtnowner {
+  background-color: tomato;
+}
+
+.dropbtndriver {
+  background-color: teal;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.user-card {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5rem;
+  margin-left: 7rem;
+  margin-bottom: 6rem;
+  width: 25rem;
+  height: 30rem;
+  background-color: white;
+
+}
+
+.account-container {
+  display: flex;
+  justify-content: start;
+
+}
+
+
+.div-cards {
+  margin-top: 5rem;
+  margin-left: -7rem;
+  max-width: 30rem;
+}
+
+.push-down {
+  margin-bottom: 1.2rem;
+}
+
+.align-account-text {
+  margin-left: 10rem;
+}
+
+.account-label {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+
+}
+
+.profile-pic {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-top: 1rem;
+}
+
+.green {
+  color: green;
+}
+
+
+.account-btn {
+  height: 3rem;
+  width: 9rem;
+  color: white;
+  background-color: rgb(193, 72, 72);
+  border-color: rgb(193, 72, 72);
+  border-radius: 38px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.account-background {
+  background-color: #d2d4da;
 }

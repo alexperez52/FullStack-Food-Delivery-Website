@@ -56,44 +56,62 @@ export default class AddItemsTool extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-item-align">
         <div>
-          <input
-            type="name"
-            name="name"
-            value={this.state.name}
-            placeholder="name"
-            onChange={this.handleChange}
-          ></input>
+          <div className="label-div-name">Item Name</div>
+          <div>
+            <input
+              className="name-input wi"
+              type="name"
+              name="name"
+              value={this.state.name}
+              placeholder="name"
+              onChange={this.handleChange}
+            ></input>
+          </div>
         </div>
         <div>
-          <input
-            type="description"
-            name="description"
-            value={this.state.description}
-            placeholder="description"
-            onChange={this.handleChange}
-          ></input>
+          <div className="label-div-name">Description</div>
+          <div>
+            <input
+              className="name-input wi"
+              type="description"
+              name="description"
+              value={this.state.description}
+              placeholder="description"
+              onChange={this.handleChange}
+            ></input>
+          </div>
         </div>
         <div>
-          <input
-            type="price"
-            name="price"
-            value={this.state.price}
-            placeholder="price"
-            onChange={this.handleChange}
-          ></input>
+          <div className="label-div-name">Price</div>
+          <div>
+            <input
+              className="name-input wi"
+              type="price"
+              name="price"
+              value={this.state.price}
+              placeholder="price"
+              onChange={this.handleChange}
+            ></input>
+          </div>
         </div>
         <div>
-          <input
-            type="imageURL"
-            name="imageURL"
-            value={this.state.imageURL}
-            placeholder="url"
-            onChange={this.handleChange}
-          ></input>
-          <button onClick={(e) => this.clicked()}>add itemss</button>
+          <div className="label-div-name">Image URL</div>
+          <div>
+            <input
+              className="name-input wi"
+              type="imageURL"
+              name="imageURL"
+              value={this.state.imageURL}
+              placeholder="url"
+              onChange={this.handleChange}
+            ></input>
+          </div>
         </div>
+        <button onClick={(e) => this.clicked()} className="owner-btn resize">
+          add itemss
+        </button>
       </div>
     );
   }

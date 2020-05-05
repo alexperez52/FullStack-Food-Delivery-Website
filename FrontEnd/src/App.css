@@ -766,9 +766,7 @@
 }
 
 .cart-div-reg {
-  border-color: #323135;
-  border-style: groove;
-  border-width: thin;
+
   margin-top: -51.6%;
   height: 40rem;
   width: 23rem;
@@ -1724,7 +1722,7 @@ code {
   font-size: 20px;
   font-weight: bold;
   display: flex;
-  border-radius: 2rem;
+
   justify-content: center;
   margin-bottom: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
@@ -1777,7 +1775,7 @@ code {
 
 .background {
   padding-top: 1rem;
-  background-color: teal;
+  background-color: rgb(124, 142, 142);
   margin-left: 15rem;
   margin-right: 15rem;
   border-style: solid;

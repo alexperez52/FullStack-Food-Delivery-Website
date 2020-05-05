@@ -9,7 +9,6 @@ export default class Analytics extends Component {
     super(props);
     this.state = {
       posts: [],
-      orders: [],
       totalPrice: 0,
     };
   }
@@ -20,13 +19,12 @@ export default class Analytics extends Component {
 
       this.setState({ posts: e.data });
       let totalPrice = 0;
+      const arr = [];
       for (var i = 0; i < e.data.length; i++) {
         totalPrice += e.data[i].bill;
       }
-      this.setState({ totalPrice });
+      this.setState({ totalPrice, items: arr });
     });
-
-    await axios.get();
   }
 
   render() {
@@ -42,10 +40,10 @@ export default class Analytics extends Component {
             <div className="background">
               {this.state.posts.map((postDetail, index) => {
                 return (
-                  <div key={postDetail.id} className="owner-items">
+                  <div key={index} className="owner-items">
                     <div
                       className="invoice-item dropdown sizing"
-                      key={postDetail}
+                      key={index}
                       onClick={() => this.invoiceClicked(postDetail.id)}
                     >
                       <div>
@@ -57,10 +55,9 @@ export default class Analytics extends Component {
                           {postDetail.bill}
                         </div>
                       </div>
+
                       <div className="dropdown-content dropdown-size">
-                        {" "}
-                        <div>ok</div>
-                        <div>{postDetail.information}</div>
+                        {postDetail.information}
                       </div>
                     </div>
                   </div>

@@ -1965,11 +1965,21 @@ code {
 }
 
 .bck {
-  background-color: lightgray;
-  width: 15rem;
+  justify-content: center;
+  background-color: whitesmoke;
+  width: 30rem;
   font-size: 20px;
+  height: 10rem;
+  margin-left: 20rem;
+  margin-right: 2rem;
   padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: 2rem;
+  margin-bottom: 2rem;
+  /* padding-left: 2rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 25rem; */
 
 }
 
@@ -1989,4 +1999,9 @@ code {
 
 .blac-text {
   color: red;
+}
+
+.swipe-btn {
+  display: flex;
+  justify-content: space-between;
 }

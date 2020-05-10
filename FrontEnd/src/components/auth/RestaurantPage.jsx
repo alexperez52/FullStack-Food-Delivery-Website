@@ -16,6 +16,7 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import StarRatings from "react-star-ratings";
 
 export default class RestaurantPage extends Component {
   static contextType = GlobalContext;
@@ -46,6 +47,8 @@ export default class RestaurantPage extends Component {
       invoiceId: "",
       size: "",
       reviews: [],
+      stars: [],
+      names: [],
     };
     this.checkoutBtn = this.checkoutBtn.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
@@ -68,6 +71,7 @@ export default class RestaurantPage extends Component {
           restaurantName: response.data.restaurantName,
           imageURL: response.data.imageURL,
           address: response.data.address.addressLine,
+          category: response.data.category,
           town: response.data.address.town,
           zipCode: response.data.address.zipCode,
           state: response.data.address.state,
@@ -93,14 +97,25 @@ export default class RestaurantPage extends Component {
       var size = e.data.length;
       var average = 0;
       var arr = [];
+      var arr2 = [];
+      var arr3 = [];
       for (var i = 0; i < size; i++) {
         arr.push(e.data[i].message);
+        arr2.push(e.data[i].ratings);
+        arr3.push(e.data[i].user.firstName);
         console.log(e.data[i].ratings);
         average += e.data[i].ratings;
       }
       average = average / size;
       console.log(arr);
-      this.setState({ ratings: average, size: size, reviews: arr });
+      this.setState({
+        ratings: average,
+        size: size,
+        reviews: arr,
+        stars: arr2,
+        names: arr3,
+      });
+      console.log(e.data);
     });
 
     const ratings = {
@@ -571,20 +586,54 @@ export default class RestaurantPage extends Component {
         <div className="menu-items-h1">
           <h1>Reviews:</h1>
         </div>
-        <div className="menu-items-h1 bck">
+        <div className="bck">
           {" "}
           <CarouselProvider
-            naturalSlideWidth={100}
+            naturalSlideWidth={200}
             naturalSlideHeight={50}
             totalSlides={3}
           >
             <Slider>
-              <Slide index={0}>{this.state.reviews[0]}</Slide>
-              <Slide index={1}>{this.state.reviews[1]}</Slide>
-              <Slide index={2}>{this.state.reviews[2]}</Slide>
+              <Slide index={0}>
+                <div className="bigger-text">
+                  {this.state.names[0]}{" "}
+                  <StarRatings
+                    rating={this.state.stars[0]}
+                    starDimension="25px"
+                    starSpacing="5px"
+                    starRatedColor="#fcb002"
+                  />
+                  <hr></hr>
+                </div>
+                {this.state.reviews[0]}{" "}
+              </Slide>
+              <Slide index={1}>
+                <div className="bigger-text">
+                  {this.state.names[1]}{" "}
+                  <StarRatings
+                    rating={this.state.stars[1]}
+                    starDimension="25px"
+                    starSpacing="5px"
+                    starRatedColor="#fcb002"
+                  />
+                  <hr></hr>
+                </div>
+                {this.state.reviews[1]}{" "}
+              </Slide>{" "}
+              <Slide index={2}>
+                <div className="bigger-text">
+                  {this.state.names[2]}{" "}
+                  <StarRatings
+                    rating={this.state.stars[2]}
+                    starDimension="25px"
+                    starSpacing="5px"
+                    starRatedColor="#fcb002"
+                  />
+                  <hr></hr>
+                </div>
+                {this.state.reviews[2]}{" "}
+              </Slide>
             </Slider>
-            <ButtonBack>{"<<"}</ButtonBack>
-            <ButtonNext>>></ButtonNext>
           </CarouselProvider>
         </div>
       </div>

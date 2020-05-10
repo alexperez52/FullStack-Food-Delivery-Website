@@ -35,27 +35,19 @@ class App extends Component {
   }
 
   async componentDidMount() {
-
     await axios.get("/currentUser").then(e => {
       this.setState({ userName: e.data.username });
-
     })
   }
 
 
   render() {
-
-
     history.listen((location, action) => {
       window.scrollTo(0, 0);
     });
 
     return (
-
-
       <div>
-
-
         <Router history={history}>
           <Headroom>
             <Header />
@@ -69,20 +61,17 @@ class App extends Component {
             <Route path="/push" component={HoverHead} />
             <Route path="/restaurant/*" component={RestaurantPage} />
             <Route path="/owner" component={OwnerPage} />
-
             <Route path="/" component={Home} exact />
             <Route path="/registration" component={Registration} />
             <Route path="/login" component={Login} />
             <Route path="/LoginSuccess" component={LoginSuccess} />
             <Route path="/LoginFail" component={LoginFail} />
             <Route exact path="/owner/restaurants" component={CreateRestaurant} />
-            {/* <Route exact path= "/owner/restaurants/view" component={DisplayItems} />  */}
             <Route exact path="/owner/restaurants/add" component={AddItems} />
             <Route component={Error} />
           </Switch>
         </Router>
       </div >
-
     );
   }
 }

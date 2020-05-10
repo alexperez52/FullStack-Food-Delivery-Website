@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import history from "../history";
 import Dialog from "./Dialog";
-
+import StarRatings from "react-star-ratings";
 export default class AllRestaurants extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +45,15 @@ export default class AllRestaurants extends Component {
                       {postDetail.restaurantName}
                     </div>
                     <div className="description-label">
-                      Ratings: {postDetail.ratings}
+                      Ratings:{" "}
+                      <StarRatings
+                        rating={postDetail.ratings || 0}
+                        starRatedColor="#fcb002"
+                        numberOfStars={5}
+                        starDimension="15px"
+                        starSpacing="1px"
+                        name="rating"
+                      />
                     </div>
                     <div className="description-label">
                       {postDetail.category}

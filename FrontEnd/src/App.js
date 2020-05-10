@@ -19,6 +19,8 @@ import HoverHeader from './components/auth/HoverHeader.js';
 import HoverHead from './components/auth/HoverHead';
 import Account from './components/auth/Account';
 import Analytics from "./components/auth/Analytics.jsx"
+import Orders from './components/auth/Orders.jsx';
+import Status from './components/auth/Status';
 
 
 
@@ -59,6 +61,8 @@ class App extends Component {
             <Header />
           </Headroom>
           <Switch>
+            <Route path="/status" component={Status} />
+            <Route path="/orders" component={Orders} />
             <Route path="/analytics" component={Analytics} />
             <Route path="/account" component={Account} />
             <Route path="/push" component={HoverHead} />

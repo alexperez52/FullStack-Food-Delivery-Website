@@ -10,6 +10,7 @@ export default class Analytics extends Component {
     this.state = {
       posts: [],
       totalPrice: 0,
+      earnings: 0,
     };
   }
 
@@ -25,6 +26,11 @@ export default class Analytics extends Component {
       }
       this.setState({ totalPrice, items: arr });
     });
+
+    await axios.get("/currentUser").then((e) => {
+      console.log(e.data.earnings);
+      this.setState({ earnings: e.data.earnings });
+    });
   }
 
   render() {
@@ -35,7 +41,10 @@ export default class Analytics extends Component {
             <h1 className="owner-banner ">All Orders</h1>
             <div className="invoice-item1 color-owner">
               Total Earnings:{" "}
-              <div className="color-green"> ${this.state.totalPrice}</div>
+              <div className="color-green">
+                {" "}
+                ${Math.round(this.state.totalPrice * 100) / 100}
+              </div>
             </div>
             <div className="background">
               {this.state.posts.map((postDetail, index) => {
@@ -49,9 +58,18 @@ export default class Analytics extends Component {
                       <div>
                         <div className="">
                           User: {postDetail.user.username} | Date:{" "}
-                          {postDetail.date} | In progress:{" "}
-                          {postDetail.inProgress.toString()} | Complete:{" "}
-                          {postDetail.complete.toString()} | Total Price:{" "}
+                          {postDetail.date} | Status:{" "}
+                          {postDetail.inProgress === false &&
+                            postDetail.complete === false && (
+                              <label className="pending">Pending</label>
+                            )}{" "}
+                          {postDetail.complete === false &&
+                            postDetail.inProgress === true && (
+                              <label className="in-progress">In Progress</label>
+                            )}{" "}
+                          {postDetail.complete === true && (
+                            <label className="complete">Complete</label>
+                          )}{" "}
                           {postDetail.bill}
                         </div>
                       </div>
@@ -67,7 +85,54 @@ export default class Analytics extends Component {
           </div>
         )}
 
-        {this.context.currentUser === "DRIVER" && <label>DRIVER</label>}
+        {this.context.currentUser === "DRIVER" && (
+          <div className="owner-container back">
+            <h1 className="owner-banner ">Order Overview</h1>
+            <div className="invoice-item1 color-owner">
+              Total Earnings:{" "}
+              <div className="color-green">
+                {" "}
+                ${Math.round(this.state.earnings * 100) / 100}
+              </div>
+            </div>
+            <div className="background">
+              {this.state.posts.map((postDetail, index) => {
+                return (
+                  <div key={index} className="owner-items">
+                    <div
+                      className="invoice-item dropdown sizing"
+                      key={index}
+                      onClick={() => this.invoiceClicked(postDetail.id)}
+                    >
+                      <div>
+                        <div className="">
+                          User: {postDetail.user.username} | Date:{" "}
+                          {postDetail.date} | Status:{" "}
+                          {postDetail.inProgress === false &&
+                            postDetail.complete === false && (
+                              <label className="pending">Pending</label>
+                            )}{" "}
+                          {postDetail.complete === false &&
+                            postDetail.inProgress === true && (
+                              <label className="in-progress">In Progress</label>
+                            )}{" "}
+                          {postDetail.complete === true && (
+                            <label className="complete">Complete</label>
+                          )}{" "}
+                          {postDetail.bill}
+                        </div>
+                      </div>
+
+                      <div className="dropdown-content dropdown-size">
+                        {postDetail.information}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

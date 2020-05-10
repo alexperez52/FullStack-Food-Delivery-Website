@@ -181,6 +181,7 @@ export default class RestaurantPage extends Component {
           console.log(response);
           this.setState({ invoiceId: response.data.id });
         });
+
         this.setState({
           check: false,
           receipt: true,

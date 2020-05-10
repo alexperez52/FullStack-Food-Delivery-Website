@@ -97,7 +97,7 @@ export default class Navigation extends Component {
                 <button className="PageSwitcher__Item dropbtndriver">
                   Welcome {this.context.username}
                 </button>
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                   <Link to="/account">My Account</Link>
                   <Link to="/orders">Find Orders</Link>
                   <Link to="/analytics">Analytics</Link>

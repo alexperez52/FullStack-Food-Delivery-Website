@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 
 @Entity
@@ -13,11 +14,10 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-
     private String username;
     private String password;
-
     private String email;
+    private BigDecimal earnings = new BigDecimal(5);
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "role_id", referencedColumnName = "role_id")
@@ -63,7 +63,13 @@ public class User {
         this.lastName = lastName;
     }
 
+    public BigDecimal getEarnings() {
+        return earnings;
+    }
 
+    public void setEarnings(BigDecimal earnings) {
+        this.earnings = earnings;
+    }
 
     public Roles getRole() {
         return role;

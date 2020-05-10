@@ -21,6 +21,7 @@ public class Invoice {
     private BigDecimal bill;
     private String information;
     private String date;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id" , referencedColumnName = "restaurant_id")
     private Restaurant restaurant;
@@ -28,6 +29,7 @@ public class Invoice {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="user_id", referencedColumnName = "user_id")
     private User user;
+
 
     public boolean isInProgress() {
         return isInProgress;

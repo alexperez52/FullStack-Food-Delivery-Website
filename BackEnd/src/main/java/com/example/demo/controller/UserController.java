@@ -17,6 +17,7 @@ import com.example.demo.repository.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 
 @RestController
 public class UserController {
@@ -163,6 +164,17 @@ public class UserController {
             }
         }
         return new ResponseEntity<>("not logged in", HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/payUser", method = RequestMethod.PUT)
+    public ResponseEntity<Object> payUser(@CurrentUser MyUserPrincipal principal, @RequestBody User user){
+    User payedUser = repository.getUserByUsername(principal.getUsername());
+    payedUser.setEarnings(payedUser.getEarnings().add(user.getEarnings()));
+    repository.save(payedUser);
+
+    System.out.println(payedUser.getEarnings());
+
+    return new ResponseEntity<>("Done", HttpStatus.OK);
     }
 
 

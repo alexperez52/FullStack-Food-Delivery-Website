@@ -166,9 +166,18 @@ public class RestaurantController {
         invoice.setUser(user);
         invoice.setRestaurant(foundRestaurant);
         invoiceRepository.save(invoice);
+
         return new ResponseEntity<>(invoice, HttpStatus.OK);
 
     }
+
+    @RequestMapping(value="/userInvoices", method = RequestMethod.GET)
+    public ResponseEntity<Object> userInvoices(@CurrentUser MyUserPrincipal principal){
+        User user = userRepository.findByUsername(principal.getUsername()).get();
+
+        return new ResponseEntity<>(invoiceRepository.findAllByUser(user), HttpStatus.OK);
+    }
+
 
     @RequestMapping(value="/specificInvoices", method = RequestMethod.GET)
     public ResponseEntity<Object> getInvoices(@CurrentUser MyUserPrincipal principal){
@@ -177,5 +186,36 @@ public class RestaurantController {
 
         return new ResponseEntity<>(invoiceRepository.findAllByRestaurant(user.getRestaurant()), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public ResponseEntity<Object> getOrdersNotComplete(){
+
+        return new ResponseEntity<>(invoiceRepository.findAllByIsCompleteIsFalse(), HttpStatus.OK);
+    }
+
+    
+
+
+    @RequestMapping(value = "/acceptOrder", method = RequestMethod.PUT)
+    public ResponseEntity<Object> acceptOrder(@RequestBody Invoice invoice){
+
+       Invoice updateInvoice = invoiceRepository.getById(invoice.getId());
+       System.out.println(invoice.getId());
+        updateInvoice.setInProgress(true);
+        invoiceRepository.save(updateInvoice);
+
+        return new ResponseEntity<>("Done", HttpStatus.OK);
+    }
+    @RequestMapping(value = "/completeOrder", method = RequestMethod.PUT)
+    public ResponseEntity<Object> completeOrder(@RequestBody Invoice invoice){
+
+        Invoice updateInvoice = invoiceRepository.getById(invoice.getId());
+        System.out.println(invoice.getId());
+        updateInvoice.setComplete(true);
+        invoiceRepository.save(updateInvoice);
+
+        return new ResponseEntity<>("Done", HttpStatus.OK);
+    }
+
 
 }

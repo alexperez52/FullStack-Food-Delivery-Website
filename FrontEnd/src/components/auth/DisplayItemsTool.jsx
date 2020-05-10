@@ -85,7 +85,7 @@ export default class DisplayItemsTool extends Component {
                 onClose={(e) => this.setState({ isOpen: false })}
               >
                 <div className="label-div">name</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="input-input"
                     type="name"
@@ -95,7 +95,7 @@ export default class DisplayItemsTool extends Component {
                   ></input>
                 </div>
                 <div className="label-div">description</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="input-input"
                     type="description"
@@ -105,7 +105,7 @@ export default class DisplayItemsTool extends Component {
                   ></input>
                 </div>
                 <div className="label-div">price</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="input-input"
                     type="price"
@@ -116,7 +116,7 @@ export default class DisplayItemsTool extends Component {
                 </div>
 
                 <div className="label-div">imageURL</div>
-                <div className="input-div">
+                <div>
                   <input
                     className="input-input"
                     type="imageURL"

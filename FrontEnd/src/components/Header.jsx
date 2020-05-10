@@ -5,6 +5,7 @@ import history from "./history";
 import Logo from "./images/logo.png";
 import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
 import Exc from "./images/exc.png";
+import Dialog from "./auth/Dialog";
 
 export default class Header extends Component {
   static contextType = GlobalContext;
@@ -19,7 +20,9 @@ export default class Header extends Component {
 
   async componentDidMount() {
     await axios.get("/currentUser").then((e) => {
-      this.setState({ currentUser: this.context.currentUser });
+      this.setState({
+        currentUser: this.context.currentUser,
+      });
     });
   }
 
@@ -27,10 +30,6 @@ export default class Header extends Component {
     const { setCurrentUser } = this.context;
     // history.push("/");
     history.push("/");
-  }
-
-  testing() {
-    console.log("clicked");
   }
 
   render() {
@@ -44,13 +43,8 @@ export default class Header extends Component {
           </div>
           <div className="r12">
             <label className="logo-text logo-col">e</label>
-            <label className="logo-text" onClick={this.testing}>
-              diboo
-            </label>
+            <label className="logo-text">diboo</label>
           </div>
-          {/* <div>
-            <input placeholder="Search" className="input-input" />
-          </div> */}
           <img className="exc" src={Exc}></img>
         </div>
         <div className="right-align">

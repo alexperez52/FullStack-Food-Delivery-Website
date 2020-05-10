@@ -26,10 +26,10 @@ export default class AllRestaurants extends Component {
   render() {
     return (
       <div>
-        <div className="align-circles">
+        <div className="align-circles white-back">
           <h1 className="bigger-text">Restaurant Catalog</h1>
         </div>
-        <div className="item-gap align-circles">
+        <div className="item-gap align-circles white-back">
           {this.state.posts.map((postDetail, index) => {
             return (
               <div key={postDetail.id}>

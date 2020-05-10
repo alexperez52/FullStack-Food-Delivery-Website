@@ -7,6 +7,9 @@ import Mapping from "./images/mapping.png"
 import ReactSearchBox from "react-search-box";
 import Axios from "axios";
 import history from "./history";
+import Spatula from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/spatula.png.png"
+import Dialog from "./auth/Dialog";
+
 
 export default class Home extends Component {
 
@@ -16,7 +19,8 @@ export default class Home extends Component {
         this.state = {
             data: [],
             id: "",
-            date: new Date()
+            date: new Date(),
+            disclaimer: false
         };
     }
 
@@ -55,12 +59,28 @@ export default class Home extends Component {
     }
 
     render() {
+
         return (
+
             <div>
+                <Dialog isOpen={this.state.disclaimer}
+                    onClose={e => this.setState({ disclaimer: false })}>
+                    <label className="bigger-text">FAIR USE DISCLAIMER:</label>
+                    <p>
+                        This site contains copyrighted material the use of which has not been
+                        specifically authorized by the copyright owner. We are making such
+                        material available in our efforts to simulate a real delivery service
+                        for educational purposes carried out by a video demo. We believe this
+                        constitutes a fair use of any such copyrighted material as provided
+                        for in section 107 of the US Copyright Law. In Accordance with Title
+                        17 U.S.C. Section 107, the material on this is distributed without
+                        profit to those who have expressed a prior interest in recieveing the
+                        information for educational purposes.
+                                 </p></Dialog>
                 <div className="home-header">
                     <div className="d">
                         <img src={Kitchen} className="header"></img>
-                        <img src={Grey} className="grey"></img>
+                        <img src={Grey} className="grey" onClick={e => this.setState({ disclaimer: true })}></img>
                         <p className="header-text">Food when you want it.</p>
 
                         <hr className="header-hr">
@@ -106,10 +126,24 @@ export default class Home extends Component {
 
                 <div>
                     <h1 className="align-text">
-                        Discover Local Restaurants!
+                        Discover New Restaurants!
                 </h1>
                     <div>
                         <DisplayRestaurants />
+                        <div className="align-circles bigger-text">
+                            Click below to view a catalog of all of the restaurants currently registered.
+
+                        </div>
+                        <div className="align-circles">
+                            <img className="small-pic" src={Spatula}></img>
+                        </div>
+                        <div className="align-circles bigger-text">
+                            <button
+                                onClick={e => {
+                                    history.replace("/restaurants")
+                                }}
+                                className="view-btn">View all Restaurants !</button>
+                        </div>
                         <div>
                             <div className="pink-border">
 
@@ -122,7 +156,7 @@ export default class Home extends Component {
                                     Founded and created in Suffolk County Community College.
                                     Check us out on the map!
                         </p>
-                                <iframe className="map" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=16%Craig%20St%2C%20Jericho%2C%20NY%2011753+(Ghost%20Kitchen)&amp;ie=UTF8&amp;t=&amp;z=13&amp;iwloc=B&amp;output=embed" ></iframe>
+                                <iframe className="map" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=Ammerman%20Campus%2C%20533%20College%20Rd%2C%20Selden%2C%20NY%2011784+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"  ></iframe>
                             </div>
                         </div>
                     </div>

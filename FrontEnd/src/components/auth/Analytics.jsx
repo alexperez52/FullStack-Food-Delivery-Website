@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
 import axios from "axios";
+import DeliveryLogo from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/Delivery_app_SVG.svg";
 
 export default class Analytics extends Component {
   static contextType = GlobalContext;
@@ -92,40 +93,7 @@ export default class Analytics extends Component {
               </div>
             </div>
             <div className="background">
-              {this.state.posts.map((postDetail, index) => {
-                return (
-                  <div key={index} className="owner-items">
-                    <div
-                      className="invoice-item dropdown sizing"
-                      key={index}
-                      onClick={() => this.invoiceClicked(postDetail.id)}
-                    >
-                      <div>
-                        <div className="">
-                          User: {postDetail.user.username} | Date:{" "}
-                          {postDetail.date} | Status:{" "}
-                          {postDetail.inProgress === false &&
-                            postDetail.complete === false && (
-                              <label className="pending">Pending</label>
-                            )}{" "}
-                          {postDetail.complete === false &&
-                            postDetail.inProgress === true && (
-                              <label className="in-progress">In Progress</label>
-                            )}{" "}
-                          {postDetail.complete === true && (
-                            <label className="complete">Complete</label>
-                          )}{" "}
-                          {postDetail.bill}
-                        </div>
-                      </div>
-
-                      <div className="dropdown-content dropdown-size">
-                        {postDetail.information}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <img src={DeliveryLogo}></img>
             </div>
           </div>
         )}

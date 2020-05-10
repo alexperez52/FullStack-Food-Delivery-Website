@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import history from "../history";
+import SmallerDialog from "./SmallerDialog";
 
 export default class CreateRestaurantTool extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class CreateRestaurantTool extends Component {
       town: "",
       state: "",
       zipCode: "",
+      submit: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -65,11 +67,19 @@ export default class CreateRestaurantTool extends Component {
     await axios.post("/restaurantAddress", dataset2).then((response) => {
       console.log(response);
     });
+
+    this.setState({ submit: true });
   }
 
   render() {
     return (
       <div className="dark">
+        <SmallerDialog
+          isOpen={this.state.submit}
+          onClose={(e) => this.setState({ submit: false })}
+        >
+          <h3 className=" blac-text">Restaurant Submitted!</h3>
+        </SmallerDialog>
         <div className="info-card dark">
           <div className="info-labels info-m">
             <h1 className="info-h1">{this.state.restaurantName}</h1>

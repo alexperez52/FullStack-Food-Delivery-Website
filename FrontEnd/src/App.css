@@ -86,7 +86,7 @@
   display: flex;
   justify-content: left;
   column-gap: 4%;
-  padding-left: 8%;
+  padding-left: 5%;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -1463,6 +1463,23 @@ code {
 
 }
 
+.header-btn1 {
+
+  width: 11rem;
+  height: 3.5rem;
+  background-color: #f26226;
+  border-radius: 0.5rem;
+  border: ivory;
+  color: white;
+  font-family: "Cera Pro", "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 22px;
+  letter-spacing: 1.2px;
+  word-spacing: 4.8px;
+  font-weight: 700;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+
 .header-btn {
   position: absolute;
   margin-top: 30%;
@@ -1954,4 +1971,22 @@ code {
   padding-left: 2rem;
   padding-top: 2rem;
 
+}
+
+.view-btn {
+  color: white;
+  background-color: red;
+  height: 5rem;
+  width: 20rem;
+  margin-top: -2rem;
+  font-size: 30px;
+  border-radius: 5rem;
+}
+
+.white-back {
+  background-color: white;
+}
+
+.blac-text {
+  color: red;
 }

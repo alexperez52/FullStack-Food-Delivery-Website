@@ -35,6 +35,15 @@ public class UserController {
     @Autowired
     AddressRepository addressRepository;
 
+    /**
+     * This method edits the current user's information with the information contained inside
+     * another user object which is passed through the parameters as a JSON.
+     * THen the updated user is saved in the database and user repository.
+     * @param user A user object passed in as a JSON
+     *                   corresponding user object in the user repository.
+     * @param principal A user object with username and password that holds the current logged in user.
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value= "/updateUser", method = RequestMethod.POST)
     public ResponseEntity<Object> editUser(@RequestBody User user, @CurrentUser MyUserPrincipal principal){
 
@@ -48,11 +57,18 @@ public class UserController {
             updatedUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         repository.save(updatedUser);
-
-
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
+    /**
+     * This method edits the current user's address with the information contained inside
+     * the address object that is passed in through the parameters as a JSON. Then the address
+     * is saved in the database and address repository.
+     * @param address An address object passed in as a JSON
+     *                   corresponding address object in the address repository.
+     * @param principal A user object with username and password that holds the current logged in user.
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value ="/address", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrEditAddress(@RequestBody Address address, @CurrentUser MyUserPrincipal principal){
 
@@ -70,7 +86,16 @@ public class UserController {
         return new ResponseEntity<>("ok", HttpStatus.OK);
 
     }
-
+    /**
+     * This method checks if the address object provided through the parameters
+     * is null. If its null, then it does not update that data field in the
+     * already existing address.
+     * @param address An address object passed in as a JSON
+     *                   corresponding restaurant object in the restaurant repository.
+     * @param updateAddress An address object passed in as a JSON that contains
+     *                      the new information that the already existing address
+     *                      will be updated to.
+     */
     static void updateAddress(@RequestBody Address address, Address updateAddress) {
         if(address.getAddressLine() != null){
             updateAddress.setAddressLine(address.getAddressLine());
@@ -86,7 +111,12 @@ public class UserController {
         }
     }
 
-
+    /**
+     * This method gets a user object that is found by using the currently logged in
+     * user's username.
+     * @param principal A user object with username and password that holds the current logged in user.
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ResponseEntity<Object> testing(@CurrentUser MyUserPrincipal principal){
             if(principal==null) {
@@ -100,6 +130,13 @@ public class UserController {
             }
     }
 
+    /**
+     * This method registers a user with the information sent in the parameters.
+     * Then this user object is saved in the database and user repository.
+     * @param user A user object that is sent as a JSON who's ID corresponds
+     *             to an existing user object in the user repository.
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody User user) {
 
@@ -122,12 +159,25 @@ public class UserController {
 
         }
     }
+
+    /**
+     * This method logs a user out and clears the security context.
+     * @param request
+     * @throws ServletException
+     */
     @PostMapping(value = "/logout5")
     public void logout(HttpServletRequest request) throws ServletException {
         SecurityContextHolder.clearContext();
         request.logout();
     }
 
+    /**
+     * This method logs in and authenticates a user if the information sent in the
+     * parameters corresponds to an existing user's username and password in the
+     * user repository.
+     * @param user A user object that is sent as a JSON
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Object> checkLogin(@RequestBody User user) {
 
@@ -141,6 +191,10 @@ public class UserController {
         return new ResponseEntity<Object>(user, HttpStatus.OK);
     }
 
+    /**
+     * This method gets all users that have the role "OWNER"
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<Object> getUsers() {
 
@@ -149,6 +203,12 @@ public class UserController {
         return new ResponseEntity<>(repository.findByRole(roleRepository.getRolesByRole(a)), HttpStatus.OK);
     }
 
+    /**
+     *This method gets the currently logged in user as a user object. If it is not found then it returns
+     * a dummy user with null values.
+     * @param principal A user object with username and password that holds the current logged in user.
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value ="/currentUser", method = RequestMethod.GET)
     public ResponseEntity<Object> getUser(@CurrentUser MyUserPrincipal principal){
 
@@ -166,6 +226,15 @@ public class UserController {
         return new ResponseEntity<>("not logged in", HttpStatus.OK);
     }
 
+    /**
+     * This method gets the currently logged in user and adds to that that user's 'earnings'
+     * value with the value provided in a new user object through the parameters.
+     * Then it saves this user to the database and user repository.
+     * @param principal A user object with username and password that holds the current logged in user.
+     * @param user A user object that contains a unique username corresponding to
+     *             an existing user in the user repository.
+     * @return Http Status Code ResponseEntity
+     */
     @RequestMapping(value="/payUser", method = RequestMethod.PUT)
     public ResponseEntity<Object> payUser(@CurrentUser MyUserPrincipal principal, @RequestBody User user){
     User payedUser = repository.getUserByUsername(principal.getUsername());

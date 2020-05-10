@@ -4,6 +4,7 @@ import history from "../history";
 import { Link } from "react-router-dom";
 import Dialog from "./Dialog";
 import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import SmallerDialog from "./SmallerDialog";
 
 export default class LoginTool extends Component {
   static contextType = GlobalContext;
@@ -13,6 +14,7 @@ export default class LoginTool extends Component {
     this.state = {
       username: "",
       password: "",
+      login: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -53,12 +55,18 @@ export default class LoginTool extends Component {
         }
         console.log(response);
       })
-      .catch((error) => history.push("/LoginFail"));
+      .catch((error) => this.setState({ login: true }));
   }
 
   render() {
     return (
       <div className="acontainer">
+        <SmallerDialog
+          isOpen={this.state.login}
+          onClose={(e) => this.setState({ login: false })}
+        >
+          <h3 className=" blac-text">Login Fail!</h3>
+        </SmallerDialog>
         <div className="App_Card">
           <form onSubmit={this.handleSubmit}>
             <div className="container-div">

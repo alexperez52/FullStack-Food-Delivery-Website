@@ -336,11 +336,17 @@ export default class RestaurantPage extends Component {
 
             <div className="shipment-info"></div>
           </div>
-          <button onClick={(e) => this.showStatus(this.state.invoiceId)}>
+          <button
+            className="header-btn1"
+            onClick={(e) => this.showStatus(this.state.invoiceId)}
+          >
             {" "}
             View status
           </button>
-          <button onClick={(e) => this.setState({ receipt: false })}>
+          <button
+            className="header-btn1"
+            onClick={(e) => this.setState({ receipt: false })}
+          >
             {" "}
             close
           </button>

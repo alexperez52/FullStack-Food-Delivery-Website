@@ -16,7 +16,16 @@ public class Restaurant {
     private String restaurantName;
     private String imageURL;
 
-    private BigDecimal ratings;
+    private BigDecimal ratings = new BigDecimal(0);
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     private String category;
 

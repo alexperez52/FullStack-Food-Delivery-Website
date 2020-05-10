@@ -58,6 +58,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/setRatings").permitAll()
+
+                .antMatchers("/restaurantRatings").permitAll()
                 .antMatchers("/updateUser").permitAll()
                 .antMatchers("/currentUser").permitAll()
                 .antMatchers("/restaurantItems").permitAll()

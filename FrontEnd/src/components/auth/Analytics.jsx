@@ -50,11 +50,7 @@ export default class Analytics extends Component {
               {this.state.posts.map((postDetail, index) => {
                 return (
                   <div key={index} className="owner-items">
-                    <div
-                      className="invoice-item dropdown sizing"
-                      key={index}
-                      onClick={() => this.invoiceClicked(postDetail.id)}
-                    >
+                    <div className="invoice-item dropdown sizing" key={index}>
                       <div>
                         <div className="">
                           User: {postDetail.user.username} | Date:{" "}

@@ -26,6 +26,8 @@ public class RestaurantController {
     @Autowired
     AddressRepository addressRepository;
 
+    @Autowired
+    ReviewsRepository reviewsRepository;
 
     @RequestMapping(value ="/restaurantAddress", method = RequestMethod.POST)
     public ResponseEntity<Object> createOrEditAddress(@RequestBody Address address, @CurrentUser MyUserPrincipal principal) {
@@ -217,5 +219,34 @@ public class RestaurantController {
         return new ResponseEntity<>("Done", HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/rate", method = RequestMethod.POST)
+    public ResponseEntity<Object> rate(@RequestBody Restaurant restaurant, @CurrentUser MyUserPrincipal principal){
+
+        Restaurant updateRestaurant = restaurantRepository.getRestaurantById(restaurant.getId());
+        User user = userRepository.getUserByUsername(principal.getUsername());
+        Reviews reviews = new Reviews();
+        reviews.setRestaurant(updateRestaurant);
+        reviews.setUser(user);
+        reviews.setRatings(restaurant.getRatings());
+        reviews.setMessage(restaurant.getMessage());
+        reviewsRepository.save(reviews);
+
+        return new ResponseEntity<>(reviews, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/restaurantRatings", method = RequestMethod.POST)
+    public ResponseEntity<Object> getRatings(@RequestBody Restaurant restaurant){
+
+       return new ResponseEntity<> (reviewsRepository.getAllByRestaurantId(restaurant.getId()), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/setRatings", method = RequestMethod.PUT)
+    public ResponseEntity<Object> setRatings(@RequestBody Restaurant restaurant){
+        Restaurant update = restaurantRepository.getRestaurantById(restaurant.getId());
+        update.setRatings(restaurant.getRatings());
+        restaurantRepository.save(update);
+
+        return new ResponseEntity<> (reviewsRepository.getAllByRestaurantId(restaurant.getId()), HttpStatus.OK);
+    }
 
 }

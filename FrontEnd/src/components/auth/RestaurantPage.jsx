@@ -8,6 +8,14 @@ import Dialog from "./Dialog";
 import Login from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/login.svg";
 import LoginTool from "./FunctionalLoginTool";
 import CreditCard from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/creditcard.png";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 export default class RestaurantPage extends Component {
   static contextType = GlobalContext;
@@ -36,6 +44,8 @@ export default class RestaurantPage extends Component {
       zipCode: "",
       state: "",
       invoiceId: "",
+      size: "",
+      reviews: [],
     };
     this.checkoutBtn = this.checkoutBtn.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
@@ -57,8 +67,6 @@ export default class RestaurantPage extends Component {
         this.setState({
           restaurantName: response.data.restaurantName,
           imageURL: response.data.imageURL,
-          ratings: response.data.ratings,
-          category: response.data.category,
           address: response.data.address.addressLine,
           town: response.data.address.town,
           zipCode: response.data.address.zipCode,
@@ -74,6 +82,32 @@ export default class RestaurantPage extends Component {
         const posts = response.data;
         this.setState({ posts });
       });
+
+    const id = {
+      id: this.state.id,
+    };
+
+    await axios.post("/restaurantRatings", id).then((e) => {
+      console.log(e);
+
+      var size = e.data.length;
+      var average = 0;
+      var arr = [];
+      for (var i = 0; i < size; i++) {
+        arr.push(e.data[i].message);
+        console.log(e.data[i].ratings);
+        average += e.data[i].ratings;
+      }
+      average = average / size;
+      console.log(arr);
+      this.setState({ ratings: average, size: size, reviews: arr });
+    });
+
+    const ratings = {
+      ratings: this.state.ratings,
+      id: this.state.id,
+    };
+    await axios.put("/setRatings", ratings);
   }
 
   async itemMinus(e) {
@@ -443,7 +477,10 @@ export default class RestaurantPage extends Component {
                     Location: {this.state.address} {this.state.town}{" "}
                     {this.state.state} {this.state.zipCode}
                   </h3>
-                  <h3>Ratings: {this.state.ratings} / 5.0</h3>
+                  <h3>
+                    Ratings: {Math.round(this.state.ratings * 100) / 100} (
+                    {this.state.size})
+                  </h3>
                 </div>
               </div>
             </div>
@@ -524,6 +561,25 @@ export default class RestaurantPage extends Component {
               );
             })}
           </div>
+        </div>
+        <div className="menu-items-h1">
+          <h1>Reviews:</h1>
+        </div>
+        <div className="menu-items-h1 bck">
+          {" "}
+          <CarouselProvider
+            naturalSlideWidth={100}
+            naturalSlideHeight={50}
+            totalSlides={3}
+          >
+            <Slider>
+              <Slide index={0}>{this.state.reviews[0]}</Slide>
+              <Slide index={1}>{this.state.reviews[1]}</Slide>
+              <Slide index={2}>{this.state.reviews[2]}</Slide>
+            </Slider>
+            <ButtonBack>{"<<"}</ButtonBack>
+            <ButtonNext>>></ButtonNext>
+          </CarouselProvider>
         </div>
       </div>
     );

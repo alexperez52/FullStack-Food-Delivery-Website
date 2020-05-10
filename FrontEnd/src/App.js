@@ -15,12 +15,12 @@ import AddItems from "./components/auth/AddItemsTool";
 import OwnerPage from "./components/auth/OwnerPageTool";
 import RestaurantPage from './components/auth/RestaurantPage';
 import axios from 'axios';
-import HoverHeader from './components/auth/HoverHeader.js';
 import HoverHead from './components/auth/HoverHead';
 import Account from './components/auth/Account';
 import Analytics from "./components/auth/Analytics.jsx"
 import Orders from './components/auth/Orders.jsx';
 import Status from './components/auth/Status';
+import AllRestaurants from './components/auth/AllRestaurants';
 
 
 
@@ -61,6 +61,7 @@ class App extends Component {
             <Header />
           </Headroom>
           <Switch>
+            <Route path="/restaurants" component={AllRestaurants} />
             <Route path="/status" component={Status} />
             <Route path="/orders" component={Orders} />
             <Route path="/analytics" component={Analytics} />

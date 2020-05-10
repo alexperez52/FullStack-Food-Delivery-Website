@@ -87,6 +87,9 @@ export default class Orders extends Component {
             </button>{" "}
           </div>
         </SmallerDialog>
+        <div className="align-circles">
+          <h1>All Orders</h1>
+        </div>
         <div className="background">
           {this.state.posts.map((postDetail, index) => {
             return (

@@ -294,7 +294,6 @@ public class RestaurantController {
     public ResponseEntity<Object> completeOrder(@RequestBody Invoice invoice){
 
         Invoice updateInvoice = invoiceRepository.getById(invoice.getId());
-        System.out.println(invoice.getId());
         updateInvoice.setComplete(true);
         invoiceRepository.save(updateInvoice);
 

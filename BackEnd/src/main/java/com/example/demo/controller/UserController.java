@@ -162,7 +162,7 @@ public class UserController {
 
     /**
      * This method logs a user out and clears the security context.
-     * @param request
+     * @param request 
      * @throws ServletException
      */
     @PostMapping(value = "/logout5")
@@ -240,8 +240,6 @@ public class UserController {
     User payedUser = repository.getUserByUsername(principal.getUsername());
     payedUser.setEarnings(payedUser.getEarnings().add(user.getEarnings()));
     repository.save(payedUser);
-
-    System.out.println(payedUser.getEarnings());
 
     return new ResponseEntity<>("Done", HttpStatus.OK);
     }

@@ -1,1 +1,5 @@
+com.example.demo
 com.example.demo.controller
+com.example.demo.model
+com.example.demo.repository
+com.example.demo.security

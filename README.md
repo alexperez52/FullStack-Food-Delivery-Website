@@ -35,6 +35,3 @@ Tech Updates:
 -
 I plan on learning Redux for global state mamagement instead of using contexts. 
 
-Final Thoughts:
--
-Overall this project was really challenging. There was so much to learn and for me the hardest part was being able to identify what i needed to learn. It was my first ever web related project but it has opened my eyes to the possibilities of web. I am really inspired to make my personal website now that i know how to program web applications. I am greatful to Professor Chen and Professor Li for always assigning challenging projects because this is truly how you learn to push yourself and learn something that you otherwise wouldn't. My experience at suffolk community college was amazing and i would recommend the CSE courses there to anyone that asks. 

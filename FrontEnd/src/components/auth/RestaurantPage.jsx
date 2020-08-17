@@ -3,11 +3,11 @@ import axios from "axios";
 import history from "../history";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../auth/userContext";
 import Dialog from "./Dialog";
-import Login from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/login.svg";
+import Login from "../../login.svg";
 import LoginTool from "./FunctionalLoginTool";
-import CreditCard from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/creditcard.png";
+import CreditCard from "../images/creditcard.png";
 import {
   CarouselProvider,
   Slider,

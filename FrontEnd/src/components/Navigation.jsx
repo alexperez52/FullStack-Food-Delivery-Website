@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import history from "./history";
 import { Link } from "react-router-dom";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../components/auth/userContext";
 
 export default class Navigation extends Component {
   static contextType = GlobalContext;

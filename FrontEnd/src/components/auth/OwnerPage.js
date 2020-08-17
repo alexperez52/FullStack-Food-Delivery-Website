@@ -1,10 +1,10 @@
 import React from "react";
-import OwnerPageTool from "./src/components/OwnerPageTool";
+import OwnerPageTool from "../../components/auth/OwnerPageTool";
 
 const OwnerPage = () => {
     return (
         <div >
-        <OwnerPageTool />
+            <OwnerPageTool />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
-import Strong from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/strong.jpeg";
+import GlobalContext from "../auth/userContext";
+import Strong from "../images/strong.jpeg";
 import axios from "axios";
 
 export default class Account extends Component {

@@ -5,7 +5,7 @@ import { Link, Route } from "react-router-dom";
 import CreateRestaurantTool from "./CreateRestaurantTool";
 import AddItemsTool from "./AddItemsTool";
 import DisplayItemsTool from "./DisplayItemsTool";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../auth/userContext";
 import { Redirect } from "react-router-dom";
 
 export default class OwnerPageTool extends Component {

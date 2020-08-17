@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../auth/userContext";
 import axios from "axios";
-import DeliveryLogo from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/Delivery_app_SVG.svg";
+import DeliveryLogo from "../images/Delivery_app_SVG.svg";
 
 export default class Analytics extends Component {
   static contextType = GlobalContext;

@@ -3,7 +3,7 @@ import axios from "axios";
 import history from "../history";
 import { Link } from "react-router-dom";
 import Dialog from "./Dialog";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../auth/userContext";
 import SmallerDialog from "./SmallerDialog";
 
 export default class LoginTool extends Component {

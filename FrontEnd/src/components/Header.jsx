@@ -3,7 +3,7 @@ import Navigation from "./Navigation";
 import axios from "axios";
 import history from "./history";
 import Logo from "./images/logo.png";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../components/auth/userContext";
 import Exc from "./images/exc.png";
 import Dialog from "./auth/Dialog";
 

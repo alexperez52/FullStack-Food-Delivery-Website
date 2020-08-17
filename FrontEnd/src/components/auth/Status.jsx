@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../auth/userContext";
 import axios from "axios";
-import Check from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/check.png";
-import history from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/history.jsx";
+import Check from "../images/check.png";
+import history from "../history";
 import SmallerDialog from "./SmallerDialog";
 
 export default class Status extends Component {

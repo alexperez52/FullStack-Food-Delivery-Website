@@ -6,7 +6,7 @@ import Dialog from "./Dialog";
 import Owner from "./owner.svg";
 import Delivery from "./delivery.svg";
 import Customer from "./customer.svg";
-import GlobalContext from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/userContext.js";
+import GlobalContext from "../auth/userContext";
 
 export default class FunctionalLoginTool extends Component {
   static contextType = GlobalContext;

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Kitchen from "./images/stock.jpg";
-import DisplayRestaurants from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/auth/DisplayRestaurants.jsx";
+import DisplayRestaurants from "../components/auth/DisplayRestaurants";
 import Coding from "./images/Startup_SVG.svg";
 import Grey from "./images/grey.jpg"
 import Mapping from "./images/mapping.png"
 import ReactSearchBox from "react-search-box";
 import Axios from "axios";
 import history from "./history";
-import Spatula from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/images/spatula.png.png"
+import Spatula from "../components/images/spatula.png.png"
 import Dialog from "./auth/Dialog";
 
 

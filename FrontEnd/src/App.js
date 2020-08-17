@@ -15,7 +15,6 @@ import AddItems from "./components/auth/AddItemsTool";
 import OwnerPage from "./components/auth/OwnerPageTool";
 import RestaurantPage from './components/auth/RestaurantPage';
 import axios from 'axios';
-import HoverHead from './components/auth/HoverHead';
 import Account from './components/auth/Account';
 import Analytics from "./components/auth/Analytics.jsx"
 import Orders from './components/auth/Orders.jsx';
@@ -58,7 +57,6 @@ class App extends Component {
             <Route path="/orders" component={Orders} />
             <Route path="/analytics" component={Analytics} />
             <Route path="/account" component={Account} />
-            <Route path="/push" component={HoverHead} />
             <Route path="/restaurant/*" component={RestaurantPage} />
             <Route path="/owner" component={OwnerPage} />
             <Route path="/" component={Home} exact />

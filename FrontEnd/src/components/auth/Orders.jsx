@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SmallerDialog from "./SmallerDialog";
-import history from "/home/alexis/Desktop/Kitchen-Delivery/FrontEnd/src/components/history.jsx";
 
 export default class Orders extends Component {
   constructor(props) {

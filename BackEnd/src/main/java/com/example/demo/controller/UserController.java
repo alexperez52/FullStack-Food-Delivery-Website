@@ -162,7 +162,7 @@ public class UserController {
 
     /**
      * This method logs a user out and clears the security context.
-     * @param request 
+     * @param request
      * @throws ServletException
      */
     @PostMapping(value = "/logout5")
